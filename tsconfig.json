@@ -17,7 +17,10 @@
     "paths": {
       "@fortune-sheet/core": ["packages/core/src"],
       "@fortune-sheet/react": ["packages/react/src"]
-    }
+    },
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" }
+    ]
   },
   "include": ["packages/*/src", "stories/"],
   "exclude": [

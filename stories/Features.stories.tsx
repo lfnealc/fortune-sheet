@@ -10,7 +10,7 @@ import freeze from "./data/freeze";
 import dataVerification from "./data/dataVerification";
 import lockcellData from "./data/protected";
 import { gData } from "./data/dataUtil";
-import "./assets/index.less";
+// import "./assets/index.less";
 
 export default {
   component: Workbook,
