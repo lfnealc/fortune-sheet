@@ -185,15 +185,27 @@ const InputBox: React.FC = () => {
         //     )
         //   );
         // } else {
-        setContext((draftCtx) => {
-          updateCell(
-            draftCtx,
-            draftCtx.luckysheetCellUpdate[0],
-            draftCtx.luckysheetCellUpdate[1],
-            refs.cellInput.current!
-          );
-          moveHighlightCell(draftCtx, "right", 1, "rangeOfSelect");
-        });
+        if (e.shiftKey) {
+          setContext((draftCtx) => {
+            updateCell(
+              draftCtx,
+              draftCtx.luckysheetCellUpdate[0],
+              draftCtx.luckysheetCellUpdate[1],
+              refs.cellInput.current!
+            );
+            moveHighlightCell(draftCtx, "left", 1, "rangeOfSelect");
+          });
+        } else {
+          setContext((draftCtx) => {
+            updateCell(
+              draftCtx,
+              draftCtx.luckysheetCellUpdate[0],
+              draftCtx.luckysheetCellUpdate[1],
+              refs.cellInput.current!
+            );
+            moveHighlightCell(draftCtx, "right", 1, "rangeOfSelect");
+          });
+        }
         // }
 
         e.preventDefault();

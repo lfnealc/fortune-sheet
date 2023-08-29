@@ -47,41 +47,53 @@ The following are all supported setting parameters
 - Initialize the default font size [defaultFontSize](#defaultfontsize)
 
 ### lang
+
 - Type: String
 - Default: "zh"
 - Usage: Internationalization settings, allow to set the language of the table, support simplified Chinese ("zh"), English ("en") and traditional Chinese ("zh_tw") and Spanish ("es")
 
-------------
+---
+
 ### data
+
 - Type: Array
 - Default: undefined
 - For detailed parameter settings, please refer to [worksheet configuration](./sheet.md)
 
-------------
+---
+
 ### onChange
+
 - Type: Function
 - Default: undefined
 - Emitted when workbook `data` has changed
 
-------------
+---
+
 ### column
+
 - Type: Number
 - Default: 60
 - Usage: The default number of columns in an empty workbook
 
-------------
+---
+
 ### row
+
 - Type: Number
 - Default: 84
 - Usage: The default number of rows in an empty workbook
 
-------------
+---
+
 ### showToolbar
+
 - Type: Boolean
 - Default: true
 - Usage: Whether to show the toolbar
 
-------------
+---
+
 ### toolbarItems
 
 - Type: Array
@@ -89,74 +101,79 @@ The following are all supported setting parameters
 - Format:
 
 ```json
-	[
-		"undo",
-    "redo",
-    "format-painter",
-    "clear-format",
-    "|",
-    "currency-format",
-    "percentage-format",
-    "number-decrease",
-    "number-increase",
-    "format",
-    "|",
-    "font",
-    "|",
-    "font-size",
-    "|",
-    "bold",
-    "italic",
-    "strike-through",
-    "underline",
-    "|",
-    "font-color",
-    "background",
-    "border",
-    "merge-cell",
-    "|",
-    "horizontal-align",
-    "vertical-align",
-    "text-wrap",
-    "text-rotation",
-    "|",
-    "freeze",
-    "conditionFormat",
-    "filter",
-    "link",
-    "image",
-    "comment",
-    "quick-formula",
-    "dataVerification",
-    "splitColumn",
-    "locationCondition",
-    "screenshot",
-    "search",
-	]
+[
+  "undo",
+  "redo",
+  "format-painter",
+  "clear-format",
+  "|",
+  "currency-format",
+  "percentage-format",
+  "number-decrease",
+  "number-increase",
+  "format",
+  "|",
+  "font",
+  "|",
+  "font-size",
+  "|",
+  "bold",
+  "italic",
+  "strike-through",
+  "underline",
+  "|",
+  "font-color",
+  "background",
+  "border",
+  "merge-cell",
+  "|",
+  "horizontal-align",
+  "vertical-align",
+  "text-wrap",
+  "text-rotation",
+  "|",
+  "freeze",
+  "conditionFormat",
+  "filter",
+  "link",
+  "image",
+  "comment",
+  "quick-formula",
+  "dataVerification",
+  "splitColumn",
+  "locationCondition",
+  "screenshot",
+  "search"
+]
 ```
 
-------------
+---
+
 ### showSheetTabs
+
 - Type: Boolean
 - Default: true
 - Usage: Whether to show the bottom sheet button
 
-------------
+---
+
 ### devicePixelRatio
+
 - Type: Number
 - Default: window.devicePixelRatio
 - Usage: Device ratio, the larger the ratio, the higher the resolution of the workbook
 
-------------
+---
+
 ### cellContextMenu
 
 - Type: Array
 - Default: []
 - Usage: Custom configuration cell right-click menu
-- Format: 	
-	```json
-	[
-		"copy",
+- Format:
+  ```json
+  [
+    "copy",
     "paste",
     "|",
     "insert-row",
@@ -172,54 +189,54 @@ The following are all supported setting parameters
     "clear",
     "sort",
     "orderAZ", // Ascending order sort
-    "orderZA", // Descending order sort
-	]
-	```
-	
-------------
+    "orderZA" // Descending order sort
+  ]
+  ```
+
+---
+
 ### sheetTabContextMenu
 
 - Type: Object
 - Usage: Customize the right-click menu of the bottom sheet bar
-- Format: 
-    ```json
-	[
-		"delete",
-    "copy",
-    "rename",
-    "color",
-    "hide",
-    "|",
-    "move",
-    "focus",
-	]
+- Format:
+  ```json
+  ["delete", "copy", "rename", "color", "hide", "|", "move", "focus"]
+  ```
 
-------------
+---
+
 ### rowHeaderWidth
+
 - Type: Number
 - Default: 46
 - Usage: The width of the row header area, if set to 0, it means to hide the row header
 
-------------
+---
+
 ### columnHeaderHeight
+
 - Type: Number
 - Default: 20
 - Usage: The height of the column header area, if set to 0, it means hide the column header
 
-------------
+---
+
 ### showFormulaBar
+
 - Type: Boolean
 - Default: true
 - Usage: Whether to show the formula bar
 
-------------
+---
+
 ### defaultFontSize
+
 - Type：Number
 - Default：11
 - Usage：Initialize the default font size
 
-------------
-
+---
 
 <!-- ## Hook Function (TODO)
 
@@ -237,7 +254,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
    - Double click the cell
    - Hit Enter
    - Use API: enterEditMode
-- Parameter: 
+- Parameter:
 	- {Array} [range]: Current selection range
 
 ------------
@@ -246,7 +263,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered before updating this cell value, `return false` will not perform subsequent updates. After modifying the cell in the editing state, this hook is triggered before exiting the editing mode and updating the data.
-- Parameter: 
+- Parameter:
 	- {Number} [r]: The row number of the cell
 	- {Number} [c]: The column number of the cell
 	- {Object | String | Number} [value]: The content of the cell to be modified
@@ -258,7 +275,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered after updating this cell
-- Parameter: 
+- Parameter:
 	- {Number} [r]: The row number of the cell
 	- {Number} [c]: The column number of the cell
 	- {Object} [oldValue]: Cell object before modification
@@ -271,7 +288,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered before the cell is rendered, `return false` will not render the cell
-- Parameter: 
+- Parameter:
 	- {Object} [cell]:Cell object
 	- {Object} [position]:
 		+ {Number} [r]: The row number of the cell
@@ -289,7 +306,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered after the cell rendering ends, `return false` will not render the cell
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: Cell object
 	- {Object} [position]:
 		+ {Number} [r]: The row number of the cell
@@ -315,7 +332,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
                         if (!window.storeUserImage) {
                             window.storeUserImage = {}
                         }
-						
+
                         if (!window.storeUserImage[r + '_' + c]) {
                             window.storeUserImage[r + '_' + c] = {}
                         }
@@ -324,7 +341,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
                         var imgRight = null;
 
                         if (window.storeUserImage[r + '_' + c].image && window.storeUserImage[r + '_' + c].imgRight) {
-							
+
 							// Fetch directly after loading
                             img = window.storeUserImage[r + '_' + c].image;
                             imgRight = window.storeUserImage[r + '_' + c].imgRight;
@@ -343,7 +360,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 
                         }
 
-						
+
                         if (img.complete) { //Direct rendering that has been loaded
                             ctx.drawImage(img, position.start_c, position.start_r, 10, 10);
                         } else {
@@ -375,7 +392,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage:The method executed before all cells are rendered. Internally, this method is added before `luckysheetDrawMain` renders the table.
-- Parameter: 
+- Parameter:
 	- {Object} [data]: Two-dimensional array data of the current worksheet
 	- {Object} [sheet]: Current worksheet object
 	- {Object} [ctx]: The context of the current canvas
@@ -386,7 +403,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered before the row header cell is rendered, `return false` will not render the row header
-- Parameter: 
+- Parameter:
 	- {String} [rowNum]: Row number
 	- {Object} [position]:
 		+ {Number} [r]: The row number of the cell
@@ -401,7 +418,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered after the row header cell is rendered, `return false` will not render the row header
-- Parameter: 
+- Parameter:
 	- {String} [rowNum]: Row number
 	- {Object} [position]:
 		+ {Number} [r]: The row number of the cell
@@ -416,7 +433,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered before the column header cell is rendered, `return false` will not render the column header
-- Parameter: 
+- Parameter:
 	- {Object} [columnAbc]: Column header characters
 	- {Object} [position]:
 		- {Number} [c]: The column number of the cell
@@ -431,7 +448,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered after the column header cell is rendered, `return false` will not render the column header
-- Parameter: 
+- Parameter:
 	- {Object} [columnAbc]: Column header characters
 	- {Object} [position]:
 		- {Number} [c]: The column number of the cell
@@ -448,7 +465,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Frame selection or trigger after setting selection
-- Parameter: 
+- Parameter:
 	- {Object} [sheet]: Current worksheet object
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 
@@ -458,7 +475,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before moving the selection, include a single cell
-- Parameter: 
+- Parameter:
 	- {Array} [range]: The current selection area, can only be a single selection area
 
 ------------
@@ -466,7 +483,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After moving the selection, include a single cell
-- Parameter: 
+- Parameter:
 	- {Array} [oldRange]: The current selection range before moving, can only be a single selection
 	- {Array} [newRange]: The current selection range after moving, can only be a single selection
 
@@ -475,7 +492,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the selection
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: Data corresponding to the selection area
 
@@ -484,7 +501,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After the selection is modified
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
     - {Object} [oldData]: Before modification, the data corresponding to the selection area
     - {Object} [newData]: After modification, the data corresponding to the selection area
@@ -494,7 +511,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before copying selection
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: Data corresponding to the selection area
 
@@ -503,7 +520,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After copying selection
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: Data corresponding to the selection area
 
@@ -512,7 +529,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before pasting the selection
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: The data corresponding to the selection area to be pasted
 
@@ -521,7 +538,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After pasting the selection
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [originData]: The data corresponding to the selection area to be pasted
 	- {Object} [pasteData]: Data to paste
@@ -531,7 +548,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before selection cut
-- Parameter: 
+- Parameter:
 	- {Array} [range]: Selection range, can only be a single range
 	- {Object} [data]: The data corresponding to the selection area to be cut
 
@@ -540,7 +557,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After selection cut
-- Parameter: 
+- Parameter:
 	- {Array} [range]: Selection range, can only be a single range
 	- {Object} [data]: The data corresponding to the selection area to be cut
 
@@ -549,7 +566,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the selection is deleted
-- Parameter: 
+- Parameter:
 	- {Array} [range]: Selection range, can only be a single range
 	- {Object} [data]: The data corresponding to the selection area to be deleted
 
@@ -558,7 +575,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After the selection is deleted
-- Parameter: 
+- Parameter:
 	- {Array} [range]: Selection range, can only be a single range
 	- {Object} [data]: The data corresponding to the selection area to be deleted
 
@@ -567,7 +584,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the selection is cleared
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: The data corresponding to the selection area to be cleared
 
@@ -576,7 +593,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After the selection is cleared
-- Parameter: 
+- Parameter:
 	- {Object | Array} [range]: Selection area, may be multiple selection areas
 	- {Object} [data]: The data corresponding to the selection area to be cleared
 
@@ -585,7 +602,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before selection drop down
-- Parameter: 
+- Parameter:
 	- {Array} [range]: The current selection range, can only be a single range
 
 ------------
@@ -593,7 +610,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After selection drop down
-- Parameter: 
+- Parameter:
 	- {Array} [range]: The selection range after the drop-down can only be a single range
 
 ------------
@@ -612,7 +629,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered after the worksheet is created, the new worksheet also includes the new pivot table
-- Parameter: 
+- Parameter:
 	- {Object} [sheet]: The configuration of the newly created worksheet
 
 ------------
@@ -621,7 +638,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the worksheet is moved
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {Number} [order]: `Order` of current worksheet
 
@@ -631,7 +648,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After the worksheet is moved
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {Number} [oldOrder]: Before modification, the `order` of the current worksheet
 	- {Number} [newOrder]: After modification, the `order` of the current worksheet
@@ -642,7 +659,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the worksheet is deleted
-- Parameter: 
+- Parameter:
 	- {Object} [sheet]: Configuration of the worksheet to be deleted
 
 ------------
@@ -651,7 +668,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After the worksheet is deleted
-- Parameter: 
+- Parameter:
 	- {Object} [sheet]: Configuration of deleted worksheet
 
 ------------
@@ -660,7 +677,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before changing the name of the worksheet
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [name]: Current worksheet name
 
@@ -670,7 +687,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After changing the name of the worksheet
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [oldName]: Before modification, the current worksheet name
 	- {String} [newName]: After modification, the current worksheet name
@@ -681,7 +698,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before changing the color of the worksheet
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [color]: Current worksheet color
 
@@ -691,7 +708,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After changing the color of the worksheet
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [oldColor]: Before modification, the current worksheet color
 	- {String} [newColor]: After modification, the current worksheet color
@@ -702,7 +719,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before worksheet zoom
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [zoom]: Current worksheet zoom ratio
 
@@ -712,7 +729,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After worksheet zoom
-- Parameter: 
+- Parameter:
 	- {Number} [i]: `index` of current worksheet
 	- {String} [oldZoom]: Before modification, the current worksheet zoom ratio
 	- {String} [newZoom]: After modification, the current worksheet zoom ratio
@@ -761,49 +778,49 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Triggered before the worksheet is created. The old hook function is called `beforeCreateDom`
-- Parameter: 
+- Parameter:
 	- {Object} [book]:Configuration of the entire workbook (options)
-    
+
 ------------
 ### workbookCreateAfter
 - Type: Function
 - Default: null
 - Usage: Triggered after the workbook is created
-- Parameter: 
+- Parameter:
 	- {Object} [book]:Configuration of the entire workbook (options)
-     
+
 ------------
 ### workbookDestroyBefore
 - Type: Function
 - Default: null
 - Usage: Triggered before the workbook is destroyed
-- Parameter: 
+- Parameter:
 	- {Object} [book]:Configuration of the entire workbook (options)
-    
+
 ------------
 ### workbookDestroyAfter
 - Type: Function
 - Default: null
 - Usage: Triggered after the workbook is destroyed
-- Parameter: 
+- Parameter:
 	- {Object} [book]:Configuration of the entire workbook (options)
-    
+
 ------------
 ### updated
 - Type: Function
 - Default: null
 - Usage: The method executed after each operation is updated is executed after the canvas rendering, monitor changes in worksheet content, that is, every time the client performs a workbook operation, Luckysheet saves the operation in the history and triggers it. When undoing and redoing, it is also an operation, of course, the hook function will be triggered.
-- Parameter: 
+- Parameter:
 	- {Object} [operate]: The history information of this operation will have different history records according to different operations. Refer to the source code [History](https://github.com/mengshukeji/Luckysheet/blob/master/src/controllers/controlHistory.js )
-    
+
 ------------
 ### resized
 - Type: Function
 - Default: null
 - Usage: After resize is executed
-- Parameter: 
+- Parameter:
 	- {Object} [size]: The width and height of the entire workbook area
-    
+
 ------------
 
 ## Cooperative
@@ -822,50 +839,50 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before the picture is inserted
-- Parameter: 
+- Parameter:
 	- {Object} [url]: Picture address
-    
+
 ------------
 ### imageInsertAfter
 - Type: Function
 - Default: null
 - Usage: After the picture is inserted
-- Parameter: 
+- Parameter:
 	- {Object} [item]]: Picture address, width and height, location and other information
-    
+
 ------------
 ### imageUpdateBefore
 - Type: Function
 - Default: null
 - Usage: Before the picture is modified, the modified content includes operations such as width and height, position, and cropping
-- Parameter: 
+- Parameter:
 	- {Object} [item]]: Picture address, width and height, location and other information
-    
+
 ------------
 ### imageUpdateAfter
 - Type: Function
 - Default: null
 - Usage: After the picture is modified, the modified content includes operations such as width and height, position, and cropping
-- Parameter: 
+- Parameter:
 	- {Object} [oldItem]]: Before modification, the picture address, width and height, location and other information
 	- {Object} [newItem]]: After modification, the picture address, width and height, location and other information
-    
+
 ------------
 ### imageDeleteBefore
 - Type: Function
 - Default: null
 - Usage: Before the picture is deleted
-- Parameter: 
+- Parameter:
 	- {Object} [item]]: Picture address, width and height, location and other information
-    
+
 ------------
 ### imageDeleteAfter
 - Type: Function
 - Default: null
 - Usage: After the picture is deleted
-- Parameter: 
+- Parameter:
 	- {Object} [item]]: Picture address, width and height, location and other information
-    
+
 ------------
 
 ## Comment
@@ -874,7 +891,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before inserting comments
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: The cell information of the comment to be inserted, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
 
 ------------
@@ -882,15 +899,15 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After inserting comments
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: The cell information where the comment is inserted, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`, contains comment information
-    
+
 ------------
 ### commentDeleteBefore
 - Type: Function
 - Default: null
 - Usage: Before deleting comments
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: The cell information of the comment to be deleted, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
 
 ------------
@@ -898,15 +915,15 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After deleting the comment
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: The cell information of the deleted comment, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
-    
+
 ------------
 ### commentUpdateBefore
 - Type: Function
 - Default: null
 - Usage: Before modifying comments
-- Parameter: 
+- Parameter:
 	- {Object} [cell]: The cell information of the comment, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
 
 ------------
@@ -914,10 +931,10 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After modifying the comment
-- Parameter: 
+- Parameter:
 	- {Object} [oldCell]: Before modification, the cell information where the comment is located, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
 	- {Object} [newCell]: After modification, the cell information where the comment is located, such as:`{ r:0,c:2,v:{m:'233',v:'233'}}`
-    
+
 ------------
 
 ## Pivot table
@@ -926,7 +943,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before modifying the PivotTable, operations such as dragging fields, etc.
-- Parameter: 
+- Parameter:
 	- {Object} [sheet]: Worksheet configuration where the pivot table is located
 
 ------------
@@ -934,10 +951,10 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After modifying the PivotTable, operations such as dragging fields, etc.
-- Parameter: 
+- Parameter:
 	- {Object} [oldSheet]: Before modification, the worksheet configuration where the pivot table is located
 	- {Object} [newSheet]: After modification, the worksheet configuration where the pivot table is located
-    
+
 ------------
 
 ## Freeze
@@ -946,7 +963,7 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: Before setting freeze
-- Parameter: 
+- Parameter:
 	- {Object} [frozen]: Freeze type information
 
 ------------
@@ -954,15 +971,15 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After setting freeze
-- Parameter: 
+- Parameter:
 	- {Object} [frozen]: Freeze type information
-    
+
 ------------
 ### frozenCancelBefore
 - Type: Function
 - Default: null
 - Usage: Before unfreezing
-- Parameter: 
+- Parameter:
 	- {Object} [frozen]: Freeze type information
 
 ------------
@@ -970,9 +987,9 @@ The hook functions are uniformly configured under ʻoptions.hook`, and configura
 - Type: Function
 - Default: null
 - Usage: After unfreezing
-- Parameter: 
+- Parameter:
 	- {Object} [frozen]: Freeze type information
-    
+
 ------------
 
 #### Legacy Hook Function

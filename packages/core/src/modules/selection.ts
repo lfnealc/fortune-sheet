@@ -775,7 +775,7 @@ export function getColMerge(
 
 export function moveHighlightCell(
   ctx: Context,
-  postion: "down" | "right",
+  postion: "down" | "right" | "left",
   index: number,
   type: "rangeOfSelect" | "rangeOfFormula"
 ) {
@@ -851,6 +851,9 @@ export function moveHighlightCell(
       moveX = curR;
     } else if (postion === "right") {
       curC += index;
+      moveY = curC;
+    } else if (postion === "left") {
+      curC -= index;
       moveY = curC;
     }
 

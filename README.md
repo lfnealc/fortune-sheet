@@ -13,7 +13,6 @@
 
 </div>
 
-
 English | [简体中文](./README-zh.md)
 
 ## Purpose
@@ -25,9 +24,10 @@ This project is originated from [Luckysheet](https://github.com/mengshukeji/Luck
 We aim to make FortuneSheet powerful yet easy to maintain.
 
 ## Communication
-* [Discord](https://discord.gg/vHGwMB77w5) English community 
-* [QQ](https://jq.qq.com/?_wv=1027&k=iHaSN47J) Chinese community
-* [Xiemala](https://xiemala.com/s/ctJmUn)
+
+- [Discord](https://discord.gg/vHGwMB77w5) English community
+- [QQ](https://jq.qq.com/?_wv=1027&k=iHaSN47J) Chinese community
+- [Xiemala](https://xiemala.com/s/ctJmUn)
 
 ## Live demo
 
@@ -38,6 +38,7 @@ Take a look at the live demo at [fortune-sheet-demo](https://ruilisi.github.io/f
 </p>
 
 ## Attention
+
 Before stable release of 1.0, input data structure and APIs may change during development. If you encounter errors after upgrading a version, check [Changelog](./CHANGELOG.md) and [Migration Guide](#migrating-data-from-luckysheet).
 
 ## Improvements to Luckysheet
@@ -45,7 +46,7 @@ Before stable release of 1.0, input data structure and APIs may change during de
 - Written fully in typescript.
 - You can now use `import` / `require` to use the library.
   ```js
-  import { Workbook } from '@fortune-sheet/react'
+  import { Workbook } from "@fortune-sheet/react";
   ```
 - Multiple instance on the same page is supported.
 - Dropped `jQuery` dependency, uses native `React` / `Vue` + `immer` to manage the dom and state.
@@ -65,6 +66,7 @@ Before stable release of 1.0, input data structure and APIs may change during de
 - **Formulas & Functions**: Built-in formulas
 
 ## Roadmap
+
 - ✅ Support cooperative editing with backend storage.
 - ✅ Support undo/redo.
 - ✅ Mobile adaption.
@@ -109,6 +111,7 @@ See detailed documentation at [fortune-sheet-doc](https://ruilisi.github.io/fort
 ```shell
 npm install @fortune-sheet/react
 ```
+
 </details>
 
 <details>
@@ -117,6 +120,7 @@ npm install @fortune-sheet/react
 ```shell
 pnpm install @fortune-sheet/react
 ```
+
 </details>
 
 <details>
@@ -125,12 +129,16 @@ pnpm install @fortune-sheet/react
 ```shell
 yarn add @fortune-sheet/react
 ```
+
 </details>
 
 ### Create an HTML placeholder
+
 ```html
 <style>
-  html, body, #root {
+  html,
+  body,
+  #root {
     width: 100%;
     height: 100%;
   }
@@ -143,14 +151,14 @@ yarn add @fortune-sheet/react
 ### Render the sheet
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { Workbook } from "@fortune-sheet/react";
-import "@fortune-sheet/react/dist/index.css"
+import "@fortune-sheet/react/dist/index.css";
 
 ReactDOM.render(
   <Workbook data={[{ name: "Sheet1" }]} />,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 ```
 
@@ -160,12 +168,12 @@ Each time a user operates on the sheet, an array of `Op` will be emiited through
 
 ```json
 [
-    {
-        "op": "replace",
-        "index": "0",
-        "path": ["data", 1, 0, "bl"],
-        "value": 1
-    }
+  {
+    "op": "replace",
+    "index": "0",
+    "path": ["data", 1, 0, "bl"],
+    "value": 1
+  }
 ]
 ```
 
@@ -178,32 +186,38 @@ Run it with `node index.js` and visit [Collabration example](https://ruilisi.git
 For detailed doc about `Op`, refer to [fortune-sheet-doc](./docs/guide/op.md)
 
 ## Migrating data from Luckysheet
+
 The overall data structure of FortuneSheet is the same as Luckysheet, with some naming differences:
 
 1. sheet.index -> sheet.id
 2. sheet.calcChain[].id -> sheet.calcChain[].id
 
 ## Contributing
+
 Expected workflow is: Fork -> Patch -> Push -> Pull Request
 
 Please make sure to read the [Contributing Guide](./docs/guide/contribute.md) before making a pull request.
 
-
 ## Development
+
 ### Installation
+
 ```shell
 yarn
 ```
 
 ### Development
+
 ```shell
 yarn dev
 ```
 
 ### Packaging
+
 ```shell
 yarn build
 ```
 
 ## License
+
 This project is licensed under the MIT License. See [MIT](http://opensource.org/licenses/MIT) for the full license text.

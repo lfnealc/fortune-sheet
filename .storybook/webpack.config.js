@@ -1,5 +1,5 @@
-const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const path = require("path");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = ({ config }) => {
   config.resolve.plugins = config.resolve.plugins || [];

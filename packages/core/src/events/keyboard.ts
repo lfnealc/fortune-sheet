@@ -540,8 +540,11 @@ export function handleGlobalKeyDown(
     if (ctx.luckysheetCellUpdate.length > 0) {
       return;
     }
-
-    moveHighlightCell(ctx, "right", 1, "rangeOfSelect");
+    if (e.shiftKey) {
+      moveHighlightCell(ctx, "left", 1, "rangeOfSelect");
+    } else {
+      moveHighlightCell(ctx, "right", 1, "rangeOfSelect");
+    }
     e.preventDefault();
   } else if (kstr === "F2") {
     if (!allowEdit) return;

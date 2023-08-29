@@ -17,14 +17,14 @@ const settings = {
 <Workbook {...settings} />
 ```
 
-`Workbook`的配置项会作用于整个表格，单个sheet的配置则需要在`settings.data`数组中，分别设置对应更详细的参数，参考[工作表配置](./sheet.md)
+`Workbook`的配置项会作用于整个表格，单个 sheet 的配置则需要在`settings.data`数组中，分别设置对应更详细的参数，参考[工作表配置](./sheet.md)
 
-针对个性化的需求，除了允许配置工具栏（[showToolbar](#showtoolbar)）、公示栏（[showFormulaBar](#showformulabar)）、底部sheet页（[showSheetTabs](#showsheettabs)）之外，
-FortuneSheet开放了更细致的自定义配置选项，分别有
+针对个性化的需求，除了允许配置工具栏（[showToolbar](#showtoolbar)）、公示栏（[showFormulaBar](#showformulabar)）、底部 sheet 页（[showSheetTabs](#showsheettabs)）之外，
+FortuneSheet 开放了更细致的自定义配置选项，分别有
 
 - 自定义工具栏（[toolbarItems](#toolbaritems)）
 - 自定义单元格右键菜单（[cellContextMenu](#cellcontextmenu)）
-- 自定义底部sheet页右击菜单（[sheetTabContextMenu](#sheettabcontextmenu)）
+- 自定义底部 sheet 页右击菜单（[sheetTabContextMenu](#sheettabcontextmenu)）
 
 ## 配置项
 
@@ -32,66 +32,78 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 
 - 语言 [lang](#lang)
 - 工作表配置 [data](#data)
-- 工作表onChange事件 [onChange](#onchange)
+- 工作表 onChange 事件 [onChange](#onchange)
 - 列数 [column](#column)
 - 行数 [row](#row)
 - 工具栏 [showToolbar](#showtoolbar)
 - 自定义工具栏[toolbarItems](#toolbaritems)
-- 底部sheet页 [showSheetTabs](#showsheettabs)
+- 底部 sheet 页 [showSheetTabs](#showsheettabs)
 - 比例 [devicePixelRatio](#devicepixelratio)
 - 自定义单元格右键菜单 [cellContextMenu](#cellcontextmenu)
-- 自定义sheet页右击菜单 [sheetTabContextMenu](#sheettabcontextmenu)
+- 自定义 sheet 页右击菜单 [sheetTabContextMenu](#sheettabcontextmenu)
 - 行标题区域的宽度 [rowHeaderWidth](#rowheaderwidth)
 - 列标题区域的高度 [columnHeaderHeight](#columnheaderheight)
 - 是否显示公式栏 [showFormulaBar](#showformulabar)
 - 初始化默认字体大小 [defaultFontSize](#defaultfontsize)
 
 ### lang
+
 - 类型：String
 - 默认值："zh"
 - 作用：国际化设置，允许设置表格的语言，支持简体中文("zh")、英文("en")、繁体中文("zh_tw")和西班牙文("es")
 
-------------
+---
+
 ### data
+
 - 类型：Array
 - 默认值：undefined
 - 作用：详细参数设置参见[工作表配置](./sheet.md)
 
-------------
+---
+
 ### onChange
+
 - 类型: Function
 - 默认值: undefined
 - 当`data`改变时触发
 
-------------
+---
+
 ### column
+
 - 类型：Number
 - 默认值：60
 - 作用：空表格默认的列数量
 
-------------
+---
+
 ### row
+
 - 类型：Number
 - 默认值：84
 - 作用：空表格默认的行数据量
 
-------------
+---
+
 ### showToolbar
+
 - 类型：Boolean
 - 默认值：true
 - 作用：是否显示工具栏
 
-------------
+---
+
 ### toolbarItems
 
 - 类型：Array
 - 默认值：[]
-- 作用：自定义配置工具栏，可以与showtoolbar配合使用，`toolbarItems`拥有更高的优先级。
+- 作用：自定义配置工具栏，可以与 showtoolbar 配合使用，`toolbarItems`拥有更高的优先级。
 - 格式：
-    对象格式可以很方便控制显示隐藏，使用数组形式可轻松控制按钮顺序和位置， 以下为工具栏按钮和分隔符的默认配置。
-    ```json
-	[
-		"undo",
+  对象格式可以很方便控制显示隐藏，使用数组形式可轻松控制按钮顺序和位置， 以下为工具栏按钮和分隔符的默认配置。
+  ```json
+  [
+    "undo",
     "redo",
     "format-painter",
     "clear-format",
@@ -132,32 +144,37 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
     "splitColumn",
     "locationCondition",
     "screenshot",
-    "search",
-	]
-	```
+    "search"
+  ]
+  ```
 
-------------
+---
+
 ### showSheetTabs
+
 - 类型：Boolean
 - 默认值：true
-- 作用：是否显示底部sheet页按钮
+- 作用：是否显示底部 sheet 页按钮
 
-------------
+---
+
 ### devicePixelRatio
+
 - 类型：Number
 - 默认值：window.devicePixelRatio
 - 作用：设备比例，比例越大表格分辨率越高
 
-------------
+---
+
 ### cellContextMenu
 
 - 类型：Array
 - 默认值：[]
 - 作用：自定义配置单元格右击菜单
 - 格式：
-	```json
-	[
-		"copy", // 复制
+  ```json
+  [
+    "copy", // 复制
     "paste", // 粘贴
     "|",
     "insert-row", // 插入行
@@ -173,55 +190,54 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
     "clear", // 清除内容
     "sort", // 排序选区
     "orderAZ", // 升序
-    "orderZA", // 降序
-	]
-	```
+    "orderZA" // 降序
+  ]
+  ```
 
-------------
+---
+
 ### sheetTabContextMenu
 
 - 类型：Object
-- 作用：自定义配置sheet页右击菜单
+- 作用：自定义配置 sheet 页右击菜单
 - 格式：
-    ```json
-	[
-		"delete",
-		"copy",
-		"rename",
-		"color",
-		"hide",
-		"|",
-		"move"
-	]
+  ```json
+  ["delete", "copy", "rename", "color", "hide", "|", "move"]
+  ```
 
-------------
+---
+
 ### rowHeaderWidth
 
 - 类型：Number
 - 默认值：46
-- 作用：行标题区域的宽度，如果设置为0，则表示隐藏行标题
+- 作用：行标题区域的宽度，如果设置为 0，则表示隐藏行标题
 
-------------
+---
+
 ### columnHeaderHeight
 
 - 类型：Number
 - 默认值：20
-- 作用：列标题区域的高度，如果设置为0，则表示隐藏列标题
+- 作用：列标题区域的高度，如果设置为 0，则表示隐藏列标题
 
-------------
+---
+
 ### showFormulaBar
 
 - 类型：Boolean
 - 默认值：true
 - 作用：是否显示公式栏
 
-------------
+---
+
 ### defaultFontSize
+
 - 类型：Number
 - 默认值：11
 - 作用：初始化默认字体大小
 
-------------
+---
 
 <!-- ## 钩子函数
 
@@ -238,10 +254,10 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 类型：Function
 - 默认值：null
 - 作用：进入单元格编辑模式之前触发。在选中了某个单元格且在非编辑状态下，通常有以下三种常规方法触发进入编辑模式
-	   
+
   - 双击单元格
   - 敲Enter键
-  - 使用API：enterEditMode 
+  - 使用API：enterEditMode
 
 - 参数：
 	- {Array} [range]: 当前选区范围
@@ -321,7 +337,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
                         if (!window.storeUserImage) {
                             window.storeUserImage = {}
                         }
-						
+
                         if (!window.storeUserImage[r + '_' + c]) {
                             window.storeUserImage[r + '_' + c] = {}
                         }
@@ -330,7 +346,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
                         var imgRight = null;
 
                         if (window.storeUserImage[r + '_' + c].image && window.storeUserImage[r + '_' + c].imgRight) {
-							
+
 							// 加载过直接取
                             img = window.storeUserImage[r + '_' + c].image;
                             imgRight = window.storeUserImage[r + '_' + c].imgRight;
@@ -349,7 +365,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 
                         }
 
-						
+
                         if (img.complete) { // 已经加载完成的直接渲染
                             ctx.drawImage(img, position.start_c, position.start_r, 10, 10);
                         } else {
@@ -573,7 +589,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 		+ {Number} [scrollLeft]:横向滚动条的位置
 		+ {Number} [scrollTop]:垂直滚动条的位置
 		+ {Number} [canvasHeight]:canvas高度
-		
+
 ------------
 ### cellDragStop
 
@@ -592,7 +608,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 	- {Object} [sheet]:当前sheet对象
 	- {Object} [ctx]: 当前画布的context
 	- {Object} [event]: 当前事件对象
-		
+
 ------------
 
 ## 选区操作（包括单元格）
@@ -968,7 +984,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：工作表从活动状态转为非活动状态后
 - 参数：
 	- {Number} [i]: sheet页的`index`
-  
+
 ### imageDeleteBefore
 
 - 类型：Function
@@ -1007,7 +1023,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：表格创建之前触发。旧的钩子函数叫做`beforeCreateDom`
 - 参数：
 	- {Object} [book]: 整个工作簿的配置（options）
-    
+
 ------------
 ### workbookCreateAfter
 
@@ -1016,7 +1032,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：表格创建之后触发
 - 参数：
 	- {Object} [book]: 整个工作簿的配置（options）
-     
+
 ------------
 ### workbookDestroyBefore
 （TODO）
@@ -1025,7 +1041,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：表格销毁之前触发
 - 参数：
 	- {Object} [book]: 整个工作簿的配置（options）
-    
+
 ------------
 ### workbookDestroyAfter
 （TODO）
@@ -1034,7 +1050,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：表格销毁之后触发
 - 参数：
 	- {Object} [book]: 整个工作簿的配置（options）
-    
+
 ------------
 ### updated
 
@@ -1043,7 +1059,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：协同编辑中的每次操作后执行的方法，监听表格内容变化，即客户端每执行一次表格操作，Luckysheet将这次操作存到历史记录中后触发，撤销重做时因为也算一次操作，也会触发此钩子函数。
 - 参数：
 	- {Object} [operate]: 本次操作的历史记录信息，根据不同的操作，会有不同的历史记录，参考源码 [历史记录](https://github.com/mengshukeji/Luckysheet/blob/master/src/controllers/controlHistory.js)
-    
+
 ------------
 ### resized
 （TODO）
@@ -1052,7 +1068,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：resize执行之后
 - 参数：
 	- {Object} [size]: 整个工作簿区域的宽高
-    
+
 ------------
 ### scroll
 - 类型：Function
@@ -1062,7 +1078,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 	- {Number} [scrollLeft]: 水平方向滚动值
 	- {Number} [scrollTop]: 垂直方向滚动值
 	- {Number} [canvasHeight]: 滚动容器的高度
-    
+
 ------------
 
 
@@ -1075,7 +1091,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：接受协作消息，二次开发。拓展协作消息指令集
 - 参数：
 	- {Object} : 收到服务器发送的整个协作消息体对象
-  
+
 ## 图片
 
 ### imageInsertBefore
@@ -1085,7 +1101,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：图片插入之前
 - 参数：
 	- {Object} [url]: 图片地址
-    
+
 ------------
 ### imageInsertAfter
 （TODO）
@@ -1094,7 +1110,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：图片插入之后
 - 参数：
 	- {Object} [item]]: 图片地址、宽高、位置等信息
-    
+
 ------------
 ### imageUpdateBefore
 （TODO）
@@ -1103,7 +1119,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：图片修改之前，修改的内容包括宽高、位置、裁剪等操作
 - 参数：
 	- {Object} [item]]: 图片地址、宽高、位置等信息
-    
+
 ------------
 ### imageUpdateAfter
 （TODO）
@@ -1113,7 +1129,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 参数：
 	- {Object} [oldItem]]: 修改前图片地址、宽高、位置等信息
 	- {Object} [newItem]]: 修改后图片地址、宽高、位置等信息
-    
+
 ------------
 ### imageDeleteBefore
 （TODO）
@@ -1122,7 +1138,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：图片删除之前
 - 参数：
 	- {Object} [item]]: 图片地址、宽高、位置等信息
-    
+
 ------------
 ### imageDeleteAfter
 （TODO）
@@ -1131,7 +1147,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：图片删除之后
 - 参数：
 	- {Object} [item]]: 图片地址、宽高、位置等信息
-    
+
 ------------
 
 ## 批注
@@ -1155,7 +1171,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 	- {Number} [r]:单元格所在行号
 	- {Number} [c]:单元格所在列号
 	- {Object} [cell]: 被插入批注所在的单元格信息，如：`{ r:0,c:2,v:{m:'233',v:'233'}}`，包含批注信息
-    
+
 ------------
 ### commentDeleteBefore
 
@@ -1177,7 +1193,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 	- {Number} [r]:单元格所在行号
 	- {Number} [c]:单元格所在列号
 	- {Object} [cell]: 被删除批注所在的单元格信息，如：`{ r:0,c:2,v:{m:'233',v:'233'}}`，可以看到批注已被删除
-    
+
 ------------
 ### commentUpdateBefore
 
@@ -1200,7 +1216,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 	- {Number} [c]:单元格所在列号
 	- {Object} [oldCell]: 修改前批注所在的单元格信息，如：`{ r:0,c:2,v:{m:'233',v:'233'}}`
 	- {Object} [newCell]: 修改后批注所在的单元格信息，如：`{ r:0,c:2,v:{m:'233',v:'233'}}`
-    
+
 ------------
 
 ## 数据透视表
@@ -1222,7 +1238,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 参数：
 	- {Object} [oldSheet]: 修改前数据透视表所在sheet页配置
 	- {Object} [newSheet]: 修改后数据透视表所在sheet页配置
-    
+
 ------------
 
 ## 冻结
@@ -1243,7 +1259,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：设置冻结后
 - 参数：
 	- {Object} [frozen]: 冻结类型信息
-    
+
 ------------
 ### frozenCancelBefore
 （TODO）
@@ -1261,7 +1277,7 @@ FortuneSheet开放了更细致的自定义配置选项，分别有
 - 作用：取消冻结后
 - 参数：
 	- {Object} [frozen]: 冻结类型信息
-    
+
 ------------
 
 ## 打印

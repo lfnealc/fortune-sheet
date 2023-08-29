@@ -4,12 +4,12 @@ Each time a user operates on the sheet, an array of `Op` will be emiited through
 
 ```json
 [
-    {
-        "op": "replace",
-        "id": "0",
-        "path": ["data", 1, 0, "bl"],
-        "value": 1
-    }
+  {
+    "op": "replace",
+    "id": "0",
+    "path": ["data", 1, 0, "bl"],
+    "value": 1
+  }
 ]
 ```
 
@@ -36,26 +36,24 @@ Each `Op` has the following structure.
 
 where
 
-| Field | Description |
-| ----- | ----------- |
-| op | Operation name, should be one of `add`, `remove`, `replce`, `insertRowCol`, `deleteRowCol`, `addSheet`, `deleteSheet` |
-| id | Sheet id of the operation |
-| path | Path of the value to be updated |
-| value | Value to be updated |
-
+| Field | Description                                                                                                           |
+| ----- | --------------------------------------------------------------------------------------------------------------------- |
+| op    | Operation name, should be one of `add`, `remove`, `replce`, `insertRowCol`, `deleteRowCol`, `addSheet`, `deleteSheet` |
+| id    | Sheet id of the operation                                                                                             |
+| path  | Path of the value to be updated                                                                                       |
+| value | Value to be updated                                                                                                   |
 
 ## Operation name
 
-| Name | Description |
-| ----- | ----------- |
-| add | Add the value to path |
-| replace | Replace the value at path |
-| remove | Remove the value at path |
+| Name         | Description                                   |
+| ------------ | --------------------------------------------- |
+| add          | Add the value to path                         |
+| replace      | Replace the value at path                     |
+| remove       | Remove the value at path                      |
 | insertRowCol | Special op, see [insertRowCol](#insertrowcol) |
 | deleteRowCol | Special op, see [deleteRowCol](#deleterowcol) |
-| addSheet | Special op, see [addSheet](#addsheet) |
-| deleteSheet | Special op, see [deleteSheet](#deletesheet) |
-
+| addSheet     | Special op, see [addSheet](#addsheet)         |
+| deleteSheet  | Special op, see [deleteSheet](#deletesheet)   |
 
 ## Special ops
 
@@ -79,13 +77,13 @@ Indicates that user performed row or column insertion.
 
 where
 
-| Field | Description |
-| ----- | ----------- |
-| type | `row` or `column` |
-| index | Start index of row or column to be inserted |
-| count | Amount of the rows or columns to insert |
+| Field     | Description                                  |
+| --------- | -------------------------------------------- |
+| type      | `row` or `column`                            |
+| index     | Start index of row or column to be inserted  |
+| count     | Amount of the rows or columns to insert      |
 | direction | Insert direction, `lefttop` or `rightbottom` |
-| id | id of the operated sheet |
+| id        | id of the operated sheet                     |
 
 ### deleteRowCol
 
@@ -104,12 +102,12 @@ Indicates that user performed row or column deletion.
 
 where
 
-| Field | Description |
-| ----- | ----------- |
-| type | `row` or `column` |
+| Field | Description                                |
+| ----- | ------------------------------------------ |
+| type  | `row` or `column`                          |
 | start | Start index of row or column to be deleted |
-| end | End index of row or column to be deleted |
-| id | id of the operated sheet |
+| end   | End index of row or column to be deleted   |
+| id    | id of the operated sheet                   |
 
 ### addSheet
 
@@ -131,6 +129,6 @@ Indicates that user deleted a sheet.
 
 where
 
-| Field | Description |
-| ----- | ----------- |
-| id | id of the sheet to be deleted |
+| Field | Description                   |
+| ----- | ----------------------------- |
+| id    | id of the sheet to be deleted |

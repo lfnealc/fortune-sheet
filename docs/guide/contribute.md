@@ -1,5 +1,4 @@
-
-# Contribution guide  
+# Contribution guide
 
 Welcome! We are very happy that you are here and look forward to your interest in participating in FortuneSheet contributions. Of course, before you participate in the FortuneSheet contribution, please make sure to read the following full text:
 
@@ -22,26 +21,26 @@ Welcome! We are very happy that you are here and look forward to your interest i
 
 Before you submit features/improvements, you should pay attention to the following points:
 
-* Please confirm whether the feature/improvement has been submitted by others
-* An easy-to-understand title to explain the bug/submission feature/improvement you submitted
-* If it is a bug, describe the cause of the bug in detail. If it can be reproduced, please try to provide complete reproduction steps
-* If it is a feature, then the feature should have wide applicability, suitable for most users, and it is best to provide detailed design documents
-* If it is an improvement, describe the benefits of this improvement as clearly as possible
+- Please confirm whether the feature/improvement has been submitted by others
+- An easy-to-understand title to explain the bug/submission feature/improvement you submitted
+- If it is a bug, describe the cause of the bug in detail. If it can be reproduced, please try to provide complete reproduction steps
+- If it is a feature, then the feature should have wide applicability, suitable for most users, and it is best to provide detailed design documents
+- If it is an improvement, describe the benefits of this improvement as clearly as possible
 
 Specific steps:
 
-* Create [Issues](https://github.com/ruilisi/fortune-sheet/issues) and describe the issue clearly
-* If you want to solve the issue, assign the issue to your own name. If you just submit a bug/feature/improvement and don’t have time to contribute code, set assignne to empty
+- Create [Issues](https://github.com/ruilisi/fortune-sheet/issues) and describe the issue clearly
+- If you want to solve the issue, assign the issue to your own name. If you just submit a bug/feature/improvement and don’t have time to contribute code, set assignne to empty
 <!-- * If it is a relatively large feature/improvement, try to output the design document first and follow the [FortuneSheet RFC](https://github.com/mengshukeji/FortuneSheet-rfcs) process for others to review -->
 
 ## How to claim Issues
 
 In FortuneSheet's [Issues](https://github.com/ruilisi/fortune-sheet/issues) list, there are many issues created by others that have not been repaired. If you are interested, you can claim these issues. The steps to claim are as follows:
 
-* Leave a message under the issue, express the idea of claiming the task, and specify **@I can solve it**
-* If the submitter has no comments, assign the issue to your own name and update the progress in time
+- Leave a message under the issue, express the idea of claiming the task, and specify **@I can solve it**
+- If the submitter has no comments, assign the issue to your own name and update the progress in time
 <!-- * If it is a relatively large feature, try to output the design document first and follow the [FortuneSheet RFC](https://github.com/mengshukeji/FortuneSheet-rfcs) process for others to review -->
-* Develop the code and submit the code to github
+- Develop the code and submit the code to github
 
 ## Code Specification
 
@@ -55,11 +54,11 @@ As long as anyone contributes to the FortuneSheet project, you are the officiall
 
 List of potential contributions (in no particular order):
 
-* Submit the bugs, features, and improvements you found to the issue
-* Update the official documents so that the project documents are the most recent, the best practices for writing FortuneSheet, and various useful documents for the users
-* Perform test and report test results, performance test and other MQ performance comparison test, etc.
-* Review the work of others (including code and non-code) and publish your own suggestions
-* Guide new contributors and be familiar with the community process
-* Post a blog about FortuneSheet
-* Any contribution to the development of the FortuneSheet community
-* ......
+- Submit the bugs, features, and improvements you found to the issue
+- Update the official documents so that the project documents are the most recent, the best practices for writing FortuneSheet, and various useful documents for the users
+- Perform test and report test results, performance test and other MQ performance comparison test, etc.
+- Review the work of others (including code and non-code) and publish your own suggestions
+- Guide new contributors and be familiar with the community process
+- Post a blog about FortuneSheet
+- Any contribution to the development of the FortuneSheet community
+- ......

@@ -1,7 +1,7 @@
 export default {
-  target: 'browser',
+  target: "browser",
   cjs: { type: "rollup", lazy: false },
   esm: { type: "rollup" },
   disableTypeCheck: false,
-  pkgs: ['core', 'react'],
+  pkgs: ["core", "react"],
 };

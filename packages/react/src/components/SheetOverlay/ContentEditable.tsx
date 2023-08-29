@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import _ from "lodash";
+import RcTreeSelect from "rc-tree-select";
 
 type ContentEditableProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -75,7 +76,9 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
         onBlur?.(e);
       }}
       contentEditable={allowEdit}
-    />
+    >
+      <RcTreeSelect />
+    </div>
   );
 };
 

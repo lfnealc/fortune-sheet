@@ -12,11 +12,10 @@ module.exports = {
 
   framework: {
     name: "@storybook/react-webpack5",
-    options: {}
+    options: {},
   },
 
   docs: {
-    autodocs: "tag"
-  }
+    autodocs: "tag",
+  },
 };
-

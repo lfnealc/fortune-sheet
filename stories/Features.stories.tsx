@@ -2,12 +2,15 @@ import React, { useState, useCallback } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Sheet } from "@fortune-sheet/core";
 import { Workbook } from "@fortune-sheet/react";
+import TreeSelect from "rc-tree-select";
 import cell from "./data/cell";
 import formula from "./data/formula";
 import empty from "./data/empty";
 import freeze from "./data/freeze";
 import dataVerification from "./data/dataVerification";
 import lockcellData from "./data/protected";
+import { gData } from "./data/dataUtil";
+import "./assets/index.less";
 
 export default {
   component: Workbook,
@@ -88,6 +91,55 @@ export const MultiInstance: StoryFn<typeof Workbook> = () => {
       >
         <Workbook data={[empty]} />
       </div>
+    </div>
+  );
+};
+
+export const Test: StoryFn<typeof Workbook> = () => {
+  const [searchValue, setSearchValue] = useState();
+  const [value, setValue] = useState();
+  const [open, setOpen] = useState(false);
+  const onSelect = (...args) => {
+    // use onChange instead
+    console.log(args);
+  };
+  const onSearch = (value, ...args) => {
+    console.log("Do Search:", value, ...args);
+    this.setState({ searchValue: value });
+  };
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <TreeSelect
+        style={{ width: 300 }}
+        transitionName="rc-tree-select-dropdown-slide-up"
+        choiceTransitionName="rc-tree-select-selection__choice-zoom"
+        // dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
+        placeholder={<i>请下拉选择</i>}
+        showSearch
+        allowClear
+        treeLine
+        searchValue={searchValue}
+        value={value}
+        treeData={gData}
+        treeNodeFilterProp="label"
+        filterTreeNode={false}
+        onSearch={onSearch}
+        open={open}
+        onChange={(val, ...args) => {
+          console.log("onChange", val, ...args);
+          setValue(val);
+        }}
+        onDropdownVisibleChange={(v) => {
+          console.log("single onDropdownVisibleChange", v);
+          setOpen(v);
+        }}
+        onSelect={onSelect}
+      />
     </div>
   );
 };

@@ -720,6 +720,14 @@ export function cellFocus(
     dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
   }
 
+  if (item.type === "treeselect") {
+    dropDownBtn.style.display = "block";
+    dropDownBtn.style.maxWidth = `${col - col_pre}px`;
+    dropDownBtn.style.maxHeight = `${row - row_pre}px`;
+    dropDownBtn.style.left = `${col - 20}px`;
+    dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
+  }
+
   // 提示语
   if (item.hintShow) {
     let hintText = "";

@@ -167,32 +167,34 @@ A canonical cell object is as follows:
 
 ```json
 {
-    "ct": { //the value format of cell
-        "fa": "General",  //name of format is "General"
-        "t": "n" //type of the value is number
-    },
-    "v": 233, //original value is 233
-    "m": 233, //displayed value 233
-    "bg": "#f6b26b", //background color is "#f6b26b"
-    "ff": 1, // font-family is "Arial"
-    "fc": "#990000", //font-color is "#990000"
-    "bl": 1, //bold
-    "it": 1, //italics
-    "fs": 9, //font size is 9px
-    "cl": 1, //cancel line
-    "ht": 0, //horizontal center
-    "vt": 0, //vertical center
-    "tr": 2, //text rotation is -45°
-    "tb": 2, //text wrapping
-    "ps": { //comment
-        "left": 92, //the distance of the comment box from the left edge of the worksheet
-        "top": 10, //the distance of the comment box from the top edge of the worksheet
-        "width": 91, //width of comment box
-        "height": 48, //height of comment box
-        "value": "I am a comment", //content of comment
-        "isShow": true //whether the comment box is shown
-    },
-    "f": "=SUM(233)" //the cell is a sum formula
+  "ct": {
+    //the value format of cell
+    "fa": "General", //name of format is "General"
+    "t": "n" //type of the value is number
+  },
+  "v": 233, //original value is 233
+  "m": 233, //displayed value 233
+  "bg": "#f6b26b", //background color is "#f6b26b"
+  "ff": 1, // font-family is "Arial"
+  "fc": "#990000", //font-color is "#990000"
+  "bl": 1, //bold
+  "it": 1, //italics
+  "fs": 9, //font size is 9px
+  "cl": 1, //cancel line
+  "ht": 0, //horizontal center
+  "vt": 0, //vertical center
+  "tr": 2, //text rotation is -45°
+  "tb": 2, //text wrapping
+  "ps": {
+    //comment
+    "left": 92, //the distance of the comment box from the left edge of the worksheet
+    "top": 10, //the distance of the comment box from the top edge of the worksheet
+    "width": 91, //width of comment box
+    "height": 48, //height of comment box
+    "value": "I am a comment", //content of comment
+    "isShow": true //whether the comment box is shown
+  },
+  "f": "=SUM(233)" //the cell is a sum formula
 }
 ```
 
@@ -205,38 +207,41 @@ There is another reason why the content of date and time formats is stored as a 
 The following are examples of special formats:
 
 Percentage `100%`
+
 ```json
 {
-    "ct": {
-        "fa": "0%",
-        "t": "n"
-    },
-    "v": 1,
-    "m": "100%"
+  "ct": {
+    "fa": "0%",
+    "t": "n"
+  },
+  "v": 1,
+  "m": "100%"
 }
 ```
 
 decimal `1.00`
+
 ```json
 {
-    "ct": {
-        "fa": "##0.00",
-        "t": "n"
-    },
-    "v": 1,
-    "m": "1.00"
+  "ct": {
+    "fa": "##0.00",
+    "t": "n"
+  },
+  "v": 1,
+  "m": "1.00"
 }
 ```
 
 date `2020-10-23`
+
 ```json
 {
-    "ct": {
-        "fa": "yyyy-MM-dd",
-        "t": "d"
-    },
-    "v": 44127,
-    "m": "2020-10-23"
+  "ct": {
+    "fa": "yyyy-MM-dd",
+    "t": "d"
+  },
+  "v": 44127,
+  "m": "2020-10-23"
 }
 ```
 
@@ -247,55 +252,63 @@ To set a merged cell, you need to make changes in two places. Firstly, set the `
 For example, to merge the cells "A1:B2" into one cell, you can follow these steps:
 
 - Step 1: Set up the parameters for the four cells.
-    ```json
-    [
-        [{
-            "m": "merge cell",
-            "ct": {
-                "fa": "General",
-                "t": "g"
-            },
-            "v": "merge cell",
-            "mc": { //essential properties for merging cells
-                "r": 0, //row number of the main merged cell
-                "c": 0, //column number of the main merged cell
-                "rs": 2, //number of rows that the merged cell occupies
-                "cs": 2 //Number of columns that the merged cell occupies
-            }
-        }, {
-            "mc": {
-                "r": 0, //row number of the main merged cell
-                "c": 0, //column number of the main merged cell
-            }
-        }],
-        [{
-            "mc": {
-                "r": 0, //row number of the main merged cell
-                "c": 0, //column number of the main merged cell
-            }
-        }, {
-            "mc": {
-                "r": 0, //row number of the main merged cell
-                "c": 0, //column number of the main merged cell
-            }
-        }]
-    ]
-    ```
 
-    The key property for merging cells is `mc`. The main merged cell is the top-left cell of the selection range and contains four attributes: r/c/rs/cs, representing row/column/rowspan/columnspan. In this case, it means that the cells from the main cell A1 (row 0, column 0) to the cell two rows below and two columns to the right will be merged. The other cells within the selection range only need to set the position of the main cell.
+  ```json
+  [
+    [
+      {
+        "m": "merge cell",
+        "ct": {
+          "fa": "General",
+          "t": "g"
+        },
+        "v": "merge cell",
+        "mc": {
+          //essential properties for merging cells
+          "r": 0, //row number of the main merged cell
+          "c": 0, //column number of the main merged cell
+          "rs": 2, //number of rows that the merged cell occupies
+          "cs": 2 //Number of columns that the merged cell occupies
+        }
+      },
+      {
+        "mc": {
+          "r": 0, //row number of the main merged cell
+          "c": 0 //column number of the main merged cell
+        }
+      }
+    ],
+    [
+      {
+        "mc": {
+          "r": 0, //row number of the main merged cell
+          "c": 0 //column number of the main merged cell
+        }
+      },
+      {
+        "mc": {
+          "r": 0, //row number of the main merged cell
+          "c": 0 //column number of the main merged cell
+        }
+      }
+    ]
+  ]
+  ```
+
+  The key property for merging cells is `mc`. The main merged cell is the top-left cell of the selection range and contains four attributes: r/c/rs/cs, representing row/column/rowspan/columnspan. In this case, it means that the cells from the main cell A1 (row 0, column 0) to the cell two rows below and two columns to the right will be merged. The other cells within the selection range only need to set the position of the main cell.
 
 - Step 2: Set `config.merge`
-    ```json
-    {
-        "0_0": {
-            "r": 0,
-            "c": 0,
-            "rs": 2,
-            "cs": 2
-        }
+  ```json
+  {
+    "0_0": {
+      "r": 0,
+      "c": 0,
+      "rs": 2,
+      "cs": 2
     }
-    ```
-    Set config.merge with the key as the concatenated string of `r + '_' + c`, and the value the same as the main merged cell's `mc` settings: r is the row number, c is the column number, rs is the number of rows merged, and cs is the number of columns merged.
+  }
+  ```
+  Set config.merge with the key as the concatenated string of `r + '_' + c`, and the value the same as the main merged cell's `mc` settings: r is the row number, c is the column number, rs is the number of rows merged, and cs is the number of columns merged.
 
 > For more details：[config.merge](./sheet.md#configmerge)
 
@@ -306,33 +319,36 @@ Setting the borders of a cell is similar to merging cells. You need to set `bord
 For example, set the borderInfo property for cell A1 as border-all with red color:
 
 Set `config.borderInfo` as
+
 ```json
 {
-    "rangeType": "range",
-    "borderType": "border-all",
-    "color": "#000",
-    "style": "1",
-    "range": [
-        {
-            "row": [ 0, 0 ],
-            "column": [0, 0]
-        }
-    ]
+  "rangeType": "range",
+  "borderType": "border-all",
+  "color": "#000",
+  "style": "1",
+  "range": [
+    {
+      "row": [0, 0],
+      "column": [0, 0]
+    }
+  ]
 }
 ```
+
 You don't need to add any additional settings to the cell object itself. The following code only includes basic content and format settings:
+
 ```json
 [
-    [
-        {
-            "m": "borderCell",
-            "ct": {
-                "fa": "General",
-                "t": "g"
-            },
-            "v": "borderCell"
-        }
-    ]
+  [
+    {
+      "m": "borderCell",
+      "ct": {
+        "fa": "General",
+        "t": "g"
+      },
+      "v": "borderCell"
+    }
+  ]
 ]
 ```
 
@@ -343,67 +359,67 @@ You don't need to add any additional settings to the cell object itself. The fol
 It is worth noting that when initializing a table, a one-dimensional array format consisting of `r/c/v` objects is used. The value of `v` is generally set to the cell object. To save backend storage space, the value of `v` supports shorthand format, where a string can be directly written instead of a cell object. This is automatically recognized as an automatic format once rendered in FortuneSheet, as indicated by `"ct": { "fa": "General", "t": "n" }`.
 
 The following is the storage of 3 cells:
+
 ```json
 [
-    {
-        "r": 10,
-        "c": 11,
-        "v": {
-            "f": "=MAX(A7:A9)",
-            "ct": {
-                "fa": "General",
-                "t": "n"
-            },
-            "v": 100,
-            "m": "100"
-        }
-    },
-    {
-        "r": 0,
-        "c": 1,
-        "v": {
-            "v": 12,
-            "f": "=SUM(A2)",
-            "bg": "#fff000"
-        }
-    },
-    {
-        "r": 10,
-        "c": 11,
-        "v": "value 2"
+  {
+    "r": 10,
+    "c": 11,
+    "v": {
+      "f": "=MAX(A7:A9)",
+      "ct": {
+        "fa": "General",
+        "t": "n"
+      },
+      "v": 100,
+      "m": "100"
     }
+  },
+  {
+    "r": 0,
+    "c": 1,
+    "v": {
+      "v": 12,
+      "f": "=SUM(A2)",
+      "bg": "#fff000"
+    }
+  },
+  {
+    "r": 10,
+    "c": 11,
+    "v": "value 2"
+  }
 ]
 ```
->  For more details [usage of celldata](./sheet.md#celldata)
+
+> For more details [usage of celldata](./sheet.md#celldata)
 
 ## Cell format
-
 
 The format is set to:
 
 ```json
 {
-    "ct": {
-        "fa": "General",
-        "t": "g"
-    },
-    "m": "2424",
-    "v": 2424
+  "ct": {
+    "fa": "General",
+    "t": "g"
+  },
+  "m": "2424",
+  "v": 2424
 }
 ```
 
-| Param | Description | Value |
-| ------------ | ------------ | ------------ |
-| fa | The format string for defining a format | Such as "General" |
-| t | Type | Such as "g" |
-
+| Param | Description                             | Value             |
+| ----- | --------------------------------------- | ----------------- |
+| fa    | The format string for defining a format | Such as "General" |
+| t     | Type                                    | Such as "g"       |
 
 ### The optional settings are as follows
 
-|Parameter|Explanation|Value|
-| ------------ | ------------ | ------------ |
-|fa|Format definition string| such as "General"|
-|t|Type|Such as "g"|
+| Parameter | Explanation              | Value             |
+| --------- | ------------------------ | ----------------- |
+| fa        | Format definition string | such as "General" |
+| t         | Type                     | Such as "g"       |
 
 The available settings are as follows:
 | Format | ct.fa | ct.t | Example of m value | Remarks |
@@ -430,13 +446,13 @@ The available settings are as follows:
 | More number formats | `#,##0.00_);(#,##0.00)` | n | 1,234.56 ||
 | More number formats | `#,##0.00_);[Red](#,##0.00)` | n | 1,234.56 ||
 | More number formats | $#,##0_);($#,##0) | n | $1,235 ||
-| More number formats | `$#,##0_);[Red]($#,##0)` | n | $1,235 ||
-| More number formats | $#,##0.00_);($#,##0.00) | n | $1,234.56 ||
-| More number formats | `$#,##0.00_);[Red]($#,##0.00)` | n | $1,234.56 ||
-| More number formats | _($* #,##0_);_(...($* "-"_);_(@_) | n | $ 1,235 ||
-| More number formats | _(* #,##0_);_(*..._(* "-"_);_(@_) | n | 1,235 ||
-| More number formats | _($* #,##0.00_);_(...($* "-"_);_(@_) | n | $ 1,234.56 ||
-| More number formats | _(* #,##0.00_);...* "-"??_);_(@_) | n | 1,234.56 ||
+| More number formats | `$#,##0*);[Red]($#,##0)` | n | $1,235 ||
+| More number formats | $#,##0.00*);($#,##0.00) | n | $1,234.56 ||
+| More number formats | `$#,##0.00*);[Red]($#,##0.00)` | n | $1,234.56 ||
+| More number formats | *($* #,##0_);_(...($_ "-"*);*(@*) | n | $ 1,235 ||
+| More number formats | *(_ #,##0*);*(_...\_(_ "-"_);_(@_) | n | 1,235 ||
+| More number formats | _($* #,##0.00_);_(...($_ "-"*);*(@*) | n | $ 1,234.56 ||
+| More number formats | *(_ #,##0.00*);...\* "-"??*);_(@_) | n | 1,234.56 ||
 | <br><br><br>**Time and Date Format** | | | | |
 | Time | hh:mm AM/PM | d |10:23 AM||
 | Time 24H | hh:mm | d |10:23||
@@ -460,7 +476,7 @@ The available settings are as follows:
 | Currency: Euro | "€" 0.00 | n | € 123.00 ||
 | Currency: British Pound | "￡" 0.00 | n | ￡ 123.00 ||
 | Currency: Hong Kong Dollar | "$" 0.00 | n | $ 123.00 ||
-| Currency: Japanese Yen | "￥" 0.00 | n | ￥123.00 ||
+| Currency: Japanese Yen | "￥" 0.00 | n | ￥ 123.00 ||
 | Currency: Albanian Lek | "Lek" 0.00 | n | Lek 123.00 ||
 | Currency: Algerian Dinar | "din" 0.00 | n | din 123.00 ||
 | Currency: Afghani | "Af" 0.00 | n | Af 123.00 ||
@@ -532,7 +548,7 @@ The available settings are as follows:
 | Currency: Kenyan Shilling | "Ksh" 0.00 | n | Ksh 123.00 ||
 | Currency: Lesotho Loti | "LSL" 0.00 | n | LSL 123.00 ||
 | Currency: Lao Kip | "?" 0.00 | n |? 123.00 ||
-| Currency: Lebanese Pound | "L￡" 0.00 | n | L￡ 123.00 ||
+| Currency: Lebanese Pound | "L ￡" 0.00 | n | L ￡ 123.00 ||
 | Currency: Lithuanian Litas | "Lt" 0.00 | n | Lt 123.00 ||
 | Currency: Libyan Dinar | "din" 0.00 | n | din 123.00 ||
 | Currency: Libyan Dollar | "$" 0.00 | n | $ 123.00 ||
@@ -561,7 +577,7 @@ The available settings are as follows:
 | Currency: Nigerian Naira | "?" 0.00 | n |? 123.00 ||
 | Currency: Norwegian Krone | "kr" 0.00 | n | kr 123.00 ||
 | Currency: Georgia Lari | "GEL" 0.00 | n | GEL 123.00 ||
-| Currency: RMB (Offshore) | "￥" 0.00 | n | ￥123.00 ||
+| Currency: RMB (Offshore) | "￥" 0.00 | n | ￥ 123.00 ||
 | Currency: Swedish Krona | "kr" 0.00 | n | kr 123.00 ||
 | Currency: Swiss Franc | "CHF" 0.00 | n | CHF 123.00 ||
 | Currency: Serbian Dinar | "din" 0.00 | n | din 123.00 ||
