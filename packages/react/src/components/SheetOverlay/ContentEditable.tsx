@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import _ from "lodash";
-import TreeSelect from "rc-tree-select";
-import { gData } from "stories/data/dataUtil";
+import RcTreeSelect from "./RcTreeSelect";
 
 type ContentEditableProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -52,71 +51,36 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
   let { allowEdit } = props;
   if (_.isNil(allowEdit)) allowEdit = true;
 
-  const [searchValue, setSearchValue] = useState();
-  const [rcValue, setRcValue] = useState();
-  const [open, setOpen] = useState(false);
-  const onSelect = (...args) => {
-    // use onChange instead
-    console.log(args);
-  };
-  const onSearch = (value, ...args) => {
-    console.log("Do Search:", value, ...args);
-    setSearchValue(value);
-  };
-
   return (
-    <div
-      onDoubleClick={(e) => e.stopPropagation()}
-      onClick={(e) => e.stopPropagation()}
-      {..._.omit(
-        props,
-        "innerRef",
-        "onChange",
-        "html",
-        "onBlur",
-        "autoFocus",
-        "allowEdit",
-        "initialContent"
-      )}
-      ref={(e) => {
-        root.current = e;
-        innerRef?.(e);
-      }}
-      tabIndex={0}
-      onInput={fnEmitChange}
-      onBlur={(e) => {
-        fnEmitChange(null, true);
-        onBlur?.(e);
-      }}
-      contentEditable={allowEdit}
-    >
-      <TreeSelect
-        style={{ width: 300 }}
-        transitionName="rc-tree-select-dropdown-slide-up"
-        choiceTransitionName="rc-tree-select-selection__choice-zoom"
-        // dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
-        placeholder={<i>请下拉选择</i>}
-        showSearch
-        allowClear
-        treeLine
-        searchValue={searchValue}
-        value={rcValue}
-        treeData={gData}
-        treeNodeFilterProp="label"
-        filterTreeNode={false}
-        onSearch={onSearch}
-        open={open}
-        onChange={(val, ...args) => {
-          console.log("onChange", val, ...args);
-          setRcValue(val);
+    <>
+      <RcTreeSelect />
+      <div
+        onDoubleClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
+        {..._.omit(
+          props,
+          "innerRef",
+          "onChange",
+          "html",
+          "onBlur",
+          "autoFocus",
+          "allowEdit",
+          "initialContent"
+        )}
+        ref={(e) => {
+          root.current = e;
+          innerRef?.(e);
         }}
-        onDropdownVisibleChange={(v) => {
-          console.log("single onDropdownVisibleChange", v);
-          setOpen(v);
+        tabIndex={0}
+        onInput={fnEmitChange}
+        onBlur={(e) => {
+          fnEmitChange(null, true);
+          onBlur?.(e);
         }}
-        onSelect={onSelect}
+        // contentEditable={allowEdit}
+        contentEditable={false}
       />
-    </div>
+    </>
   );
 };
 
