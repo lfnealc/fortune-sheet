@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useEffect, useRef } from "react";
 import _ from "lodash";
 import RcTreeSelect from "./RcTreeSelect";
 import WorkbookContext from "../../context";
-import { gData } from "./RcTreeSelect/dataUtil";
 
 type ContentEditableProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -40,7 +39,6 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
       let html;
       if (root.current != null) {
         html = root.current.innerHTML;
-        console.log(html);
       }
       if (onChange && html !== lastHtml.current) {
         onChange(html || "", isBlur);
@@ -56,6 +54,29 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
 
   const render = () => {
     if (context.inputTypeTreeSelect) {
+      const list = [
+        { code: "435", name: "DEBTOR OR CREDITOR" },
+        { code: "435-1", name: "BANK ACCOUNTS" },
+        { code: "5692", name: "Bank account no. 1" },
+      ];
+      const treeList = [
+        {
+          value: "435",
+          title: "435-DEBTOR OR CREDITOR",
+          children: [
+            {
+              value: "435-1",
+              title: "435-1-BANK ACCOUNTS",
+              children: [
+                {
+                  value: "5692",
+                  title: "5692-Bank account no. 1",
+                },
+              ],
+            },
+          ],
+        },
+      ];
       return (
         <RcTreeSelect
           {..._.omit(
@@ -69,8 +90,8 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
             "initialContent"
           )}
           inputRef={innerRef}
-          list={[]}
-          treeList={gData}
+          list={list}
+          treeList={treeList}
         />
       );
     }
