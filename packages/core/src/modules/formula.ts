@@ -2544,7 +2544,7 @@ export function handleFormulaInput(
   let value = $editor.innerText;
   value = escapeScriptTag(value);
   if (
-    value.length > 0 &&
+    value?.length > 0 &&
     value.substring(0, 1) === "=" &&
     (kcode !== 229 || value.length === 1)
   ) {

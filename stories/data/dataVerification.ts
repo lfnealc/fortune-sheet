@@ -110,7 +110,7 @@ const data = {
   ],
   dataVerification: {
     "0_0": {
-      type: "dropdown",
+      type: "treeselect",
       type2: "",
       rangeTxt: "A1",
       value1: "1,2,3,4,a",

@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import _ from "lodash";
 import RcTreeSelect from "./RcTreeSelect";
+import WorkbookContext from "../../context";
+import { gData } from "./RcTreeSelect/dataUtil";
 
 type ContentEditableProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -15,6 +17,7 @@ type ContentEditableProps = Omit<
 };
 
 const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
+  const { context } = useContext(WorkbookContext);
   const lastHtml = useRef("");
   const root = useRef<HTMLDivElement | null>(null);
   const { autoFocus, initialContent, onChange } = props;
@@ -35,9 +38,9 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
   const fnEmitChange = useCallback(
     (__: any, isBlur?: boolean) => {
       let html;
-
       if (root.current != null) {
         html = root.current.innerHTML;
+        console.log(html);
       }
       if (onChange && html !== lastHtml.current) {
         onChange(html || "", isBlur);
@@ -51,9 +54,27 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
   let { allowEdit } = props;
   if (_.isNil(allowEdit)) allowEdit = true;
 
-  return (
-    <>
-      <RcTreeSelect />
+  const render = () => {
+    if (context.inputTypeTreeSelect) {
+      return (
+        <RcTreeSelect
+          {..._.omit(
+            props,
+            "innerRef",
+            "onChange",
+            "html",
+            "onBlur",
+            "autoFocus",
+            "allowEdit",
+            "initialContent"
+          )}
+          inputRef={innerRef}
+          list={[]}
+          treeList={gData}
+        />
+      );
+    }
+    return (
       <div
         onDoubleClick={(e) => e.stopPropagation()}
         onClick={(e) => e.stopPropagation()}
@@ -77,11 +98,12 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
           fnEmitChange(null, true);
           onBlur?.(e);
         }}
-        // contentEditable={allowEdit}
-        contentEditable={false}
+        contentEditable={allowEdit}
       />
-    </>
-  );
+    );
+  };
+
+  return render();
 };
 
 export default ContentEditable;

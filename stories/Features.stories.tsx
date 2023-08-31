@@ -92,16 +92,3 @@ export const MultiInstance: StoryFn<typeof Workbook> = () => {
     </div>
   );
 };
-
-export const Test: StoryFn<typeof Workbook> = () => {
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
-      <RcTreeSelect />
-    </div>
-  );
-};

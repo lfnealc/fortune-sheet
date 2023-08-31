@@ -719,13 +719,10 @@ export function cellFocus(
     dropDownBtn.style.left = `${col - 20}px`;
     dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
   }
-
+  ctx.inputTypeTreeSelect = false;
   if (item.type === "treeselect") {
-    dropDownBtn.style.display = "block";
-    dropDownBtn.style.maxWidth = `${col - col_pre}px`;
-    dropDownBtn.style.maxHeight = `${row - row_pre}px`;
-    dropDownBtn.style.left = `${col - 20}px`;
-    dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
+    ctx.inputTypeTreeSelect = true;
+    item.hintShow = false;
   }
 
   // 提示语
