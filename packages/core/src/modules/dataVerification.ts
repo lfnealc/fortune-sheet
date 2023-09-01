@@ -685,12 +685,14 @@ export function cellFocus(
     "luckysheet-dataVerification-dropdown-btn"
   );
   ctx.dataVerificationDropDownList = false;
+  ctx.showTreeSelect = false;
   if (!showHintBox || !dropDownBtn) return;
   showHintBox.style.display = "none";
   dropDownBtn.style.display = "none";
   const index = getSheetIndex(ctx, ctx.currentSheetId) as number;
   const { dataVerification } = ctx.luckysheetfile[index];
   ctx.dataVerificationDropDownList = false;
+  ctx.showTreeSelect = false;
   if (!dataVerification) return;
   let row = ctx.visibledatarow[r];
   let row_pre = r === 0 ? 0 : ctx.visibledatarow[r - 1];
@@ -719,9 +721,9 @@ export function cellFocus(
     dropDownBtn.style.left = `${col - 20}px`;
     dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
   }
-  ctx.inputTypeTreeSelect = false;
+  ctx.showTreeSelect = false;
   if (item.type === "treeselect") {
-    ctx.inputTypeTreeSelect = true;
+    ctx.showTreeSelect = true;
     item.hintShow = false;
   }
 
@@ -792,6 +794,21 @@ export function setDropcownValue(ctx: Context, value: string, arr: any) {
   } else {
     ctx.dataVerificationDropDownList = false;
   }
+  setCellValue(ctx, rowIndex, colIndex, d, value);
+}
+
+// 设置下拉列表的值
+export function setTreeSelectValue(ctx: Context, value: string) {
+  if (!ctx.luckysheet_select_save) return;
+  const d = getFlowdata(ctx);
+  if (!d) return;
+  const last =
+    ctx.luckysheet_select_save[ctx.luckysheet_select_save.length - 1];
+  const rowIndex = last.row_focus;
+  const colIndex = last.column_focus;
+  if (rowIndex == null || colIndex == null) return;
+  ctx.showTreeSelect = false;
+  // ctx.allowEdit = false;
   setCellValue(ctx, rowIndex, colIndex, d, value);
 }
 

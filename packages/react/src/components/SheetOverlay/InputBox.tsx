@@ -174,42 +174,50 @@ const InputBox: React.FC = () => {
         //   );
         //   event.preventDefault();
         // }
-      } else if (e.key === "Tab" && context.luckysheetCellUpdate.length > 0) {
-        // if (
-        //   $("#luckysheet-formula-search-c").is(":visible") &&
-        //   formula.searchFunctionCell != null
-        // ) {
-        //   formula.searchFunctionEnter(
-        //     $("#luckysheet-formula-search-c").find(
-        //       ".luckysheet-formula-search-item-active"
-        //     )
-        //   );
-        // } else {
-        if (e.shiftKey) {
-          setContext((draftCtx) => {
-            updateCell(
-              draftCtx,
-              draftCtx.luckysheetCellUpdate[0],
-              draftCtx.luckysheetCellUpdate[1],
-              refs.cellInput.current!
-            );
-            moveHighlightCell(draftCtx, "left", 1, "rangeOfSelect");
-          });
+      } else if (e.key === "Tab") {
+        if (context.luckysheetCellUpdate.length > 0) {
+          // if (
+          //   $("#luckysheet-formula-search-c").is(":visible") &&
+          //   formula.searchFunctionCell != null
+          // ) {
+          //   formula.searchFunctionEnter(
+          //     $("#luckysheet-formula-search-c").find(
+          //       ".luckysheet-formula-search-item-active"
+          //     )
+          //   );
+          // } else {
+          // if (context.showTreeSelect) {
+          //   return;
+          // }
+          if (e.shiftKey) {
+            setContext((draftCtx) => {
+              updateCell(
+                draftCtx,
+                draftCtx.luckysheetCellUpdate[0],
+                draftCtx.luckysheetCellUpdate[1],
+                refs.cellInput.current!
+              );
+              moveHighlightCell(draftCtx, "left", 1, "rangeOfSelect");
+            });
+          } else {
+            setContext((draftCtx) => {
+              updateCell(
+                draftCtx,
+                draftCtx.luckysheetCellUpdate[0],
+                draftCtx.luckysheetCellUpdate[1],
+                refs.cellInput.current!
+              );
+              moveHighlightCell(draftCtx, "right", 1, "rangeOfSelect");
+            });
+          }
+          e.preventDefault();
+          e.stopPropagation();
+          // }
         } else {
           setContext((draftCtx) => {
-            updateCell(
-              draftCtx,
-              draftCtx.luckysheetCellUpdate[0],
-              draftCtx.luckysheetCellUpdate[1],
-              refs.cellInput.current!
-            );
-            moveHighlightCell(draftCtx, "right", 1, "rangeOfSelect");
+            draftCtx.showTreeSelect = false;
           });
         }
-        // }
-
-        e.preventDefault();
-        e.stopPropagation();
       } else if (e.key === "F4" && context.luckysheetCellUpdate.length > 0) {
         // formula.setfreezonFuc(event);
         e.preventDefault();

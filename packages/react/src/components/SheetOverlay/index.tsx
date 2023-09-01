@@ -48,6 +48,7 @@ import RangeDialog from "../DataVerification/RangeDialog";
 import { useDialog } from "../../hooks/useDialog";
 import SVGIcon from "../SVGIcon";
 import DropDownList from "../DataVerification/DropdownList";
+import RcTreeSelect from "./RcTreeSelect";
 
 const SheetOverlay: React.FC = () => {
   const { context, setContext, settings, refs } = useContext(WorkbookContext);
@@ -736,6 +737,7 @@ const SheetOverlay: React.FC = () => {
           >
             <SVGIcon name="combo-arrow" width={16} />
           </div>
+          {context.showTreeSelect && <RcTreeSelect />}
           {context.dataVerificationDropDownList && <DropDownList />}
           {/* <div
             id="luckysheet-dataVerification-dropdown-List"

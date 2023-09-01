@@ -38,6 +38,12 @@ export function scrollToHighlightCell(ctx: Context, r: number, c: number) {
 
   if (!sheet) return;
 
+  const { dataVerification } = sheet;
+  const item = dataVerification[`${r}_${c}`];
+  if (item.type === "treeselect") {
+    ctx.showTreeSelect = true;
+  }
+
   const frozen = sheet?.frozen;
 
   if (r >= 0) {

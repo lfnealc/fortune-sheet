@@ -51,7 +51,7 @@ export type Context = {
   };
   // 数据验证下拉列表
   dataVerificationDropDownList?: boolean;
-  inputTypeTreeSelect?: boolean;
+  showTreeSelect?: boolean;
   conditionRules: ConditionRulesProps; // 条件格式
 
   contextMenu: {

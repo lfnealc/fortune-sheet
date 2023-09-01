@@ -1,7 +1,5 @@
-import React, { useCallback, useContext, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import _ from "lodash";
-import RcTreeSelect from "./RcTreeSelect";
-import WorkbookContext from "../../context";
 
 type ContentEditableProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -16,7 +14,6 @@ type ContentEditableProps = Omit<
 };
 
 const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
-  const { context } = useContext(WorkbookContext);
   const lastHtml = useRef("");
   const root = useRef<HTMLDivElement | null>(null);
   const { autoFocus, initialContent, onChange } = props;
@@ -53,48 +50,6 @@ const ContentEditable: React.FC<ContentEditableProps> = ({ ...props }) => {
   if (_.isNil(allowEdit)) allowEdit = true;
 
   const render = () => {
-    if (context.inputTypeTreeSelect) {
-      const list = [
-        { code: "435", name: "DEBTOR OR CREDITOR" },
-        { code: "435-1", name: "BANK ACCOUNTS" },
-        { code: "5692", name: "Bank account no. 1" },
-      ];
-      const treeList = [
-        {
-          value: "435",
-          title: "435-DEBTOR OR CREDITOR",
-          children: [
-            {
-              value: "435-1",
-              title: "435-1-BANK ACCOUNTS",
-              children: [
-                {
-                  value: "5692",
-                  title: "5692-Bank account no. 1",
-                },
-              ],
-            },
-          ],
-        },
-      ];
-      return (
-        <RcTreeSelect
-          {..._.omit(
-            props,
-            "innerRef",
-            "onChange",
-            "html",
-            "onBlur",
-            "autoFocus",
-            "allowEdit",
-            "initialContent"
-          )}
-          inputRef={innerRef}
-          list={list}
-          treeList={treeList}
-        />
-      );
-    }
     return (
       <div
         onDoubleClick={(e) => e.stopPropagation()}

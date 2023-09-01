@@ -662,6 +662,40 @@ export function cancelNormalSelected(ctx: Context) {
   ctx.formulaCache.rangedrag_row_start = false;
 }
 
+function getTreeValue(ctx: Context, value?: any) {
+  let returnValue;
+  if (!ctx.luckysheet_select_save) return returnValue;
+  const last =
+    ctx.luckysheet_select_save[ctx.luckysheet_select_save.length - 1];
+  const rowIndex = last.row_focus;
+  const colIndex = last.column_focus;
+  if (rowIndex == null || colIndex == null) return returnValue;
+  const d = getFlowdata(ctx);
+  if (!d) return returnValue;
+  const index = getSheetIndex(ctx, ctx.currentSheetId) as number;
+  const { dataVerification } = ctx.luckysheetfile[index];
+  const data = dataVerification[`${rowIndex}_${colIndex}`];
+  const list = data.value1;
+  if (list && list.length > 0 && value) {
+    let item = list.find(
+      (it: any) => it.code.toUpperCase() === value.toUpperCase()
+    );
+    if (item) {
+      returnValue = { v: item.code, m: item.name };
+    } else {
+      item = list.find((it: any) => {
+        const { name } = it;
+        return name.toUpperCase().indexOf(value.toUpperCase()) !== -1;
+      });
+      if (item) {
+        returnValue = { v: item.code, m: item.name };
+      }
+    }
+  }
+  ctx.showTreeSelect = false;
+  return returnValue;
+}
+
 // formula.updatecell
 export function updateCell(
   ctx: Context,
@@ -763,6 +797,9 @@ export function updateCell(
 
   // API, we get value from user
   value = value || $input?.innerText;
+  if (ctx.showTreeSelect) {
+    value = getTreeValue(ctx, value);
+  }
 
   // Hook function
   if (ctx.hooks.beforeUpdateCell?.(r, c, value) === false) {

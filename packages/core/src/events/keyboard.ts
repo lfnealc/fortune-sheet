@@ -540,6 +540,9 @@ export function handleGlobalKeyDown(
     if (ctx.luckysheetCellUpdate.length > 0) {
       return;
     }
+    // if (ctx.showTreeSelect) {
+    //   return;
+    // }
     if (e.shiftKey) {
       moveHighlightCell(ctx, "left", 1, "rangeOfSelect");
     } else {

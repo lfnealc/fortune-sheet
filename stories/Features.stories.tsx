@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Sheet } from "@fortune-sheet/core";
 import { Workbook } from "@fortune-sheet/react";
-import RcTreeSelect from "packages/react/src/components/SheetOverlay/RcTreeSelect";
 import cell from "./data/cell";
 import formula from "./data/formula";
 import empty from "./data/empty";

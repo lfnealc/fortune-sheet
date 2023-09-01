@@ -15,12 +15,12 @@ const data = {
       r: 0,
       c: 0,
       v: {
-        m: "2",
+        m: "",
         ct: {
-          fa: "General",
-          t: "n",
+          fa: "@",
+          t: "s",
         },
-        v: "2",
+        v: "",
       },
     },
     {
@@ -111,10 +111,30 @@ const data = {
   dataVerification: {
     "0_0": {
       type: "treeselect",
-      type2: "",
       rangeTxt: "A1",
-      value1: "1,2,3,4,a",
-      value2: "",
+      value1: [
+        { code: "435", name: "DEBTOR OR CREDITOR" },
+        { code: "435-1", name: "BANK ACCOUNTS" },
+        { code: "5692", name: "Bank account no. 1" },
+      ],
+      value2: [
+        {
+          value: "435",
+          title: "435-DEBTOR OR CREDITOR",
+          children: [
+            {
+              value: "435-1",
+              title: "435-1-BANK ACCOUNTS",
+              children: [
+                {
+                  value: "5692",
+                  title: "5692-Bank account no. 1",
+                },
+              ],
+            },
+          ],
+        },
+      ],
       validity: "",
       remote: false,
       prohibitInput: true,
