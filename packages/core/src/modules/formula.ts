@@ -2615,6 +2615,7 @@ export function handleFormulaInput(
         $copyTo.innerHTML = escapeHTMLTag(value);
       }
     } else {
+      ctx.searchValue = value;
       $copyTo.innerHTML = escapeHTMLTag(value);
     }
   }

@@ -131,6 +131,7 @@ export type Settings = {
   showFormulaBar?: boolean;
   showSheetTabs?: boolean;
   data: Sheet[];
+  treeData?: any;
   config?: any;
   devicePixelRatio?: number;
   lang?: string | null;
@@ -286,4 +287,5 @@ export const defaultSettings: Required<Settings> = {
   generateSheetId: () => uuidv4(),
   hooks: {},
   customToolbarItems: [],
+  treeData: [],
 };

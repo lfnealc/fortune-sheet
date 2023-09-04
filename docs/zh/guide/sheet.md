@@ -162,24 +162,24 @@
 
 - 示例：
   `js
-    [{
-        "r": 0,
-        "c": 0,
-        "v": {
-            ct: {fa: "General", t: "g"},
-            m:"value1",
-            v:"value1"
-        }
-    }, {
-        "r": 0,
-        "c": 1,
-        "v": {
-            ct: {fa: "General", t: "g"},
-            m:"value2",
-            v:"value2"
-        }
-    }]
-    `
+  [{
+      "r": 0,
+      "c": 0,
+      "v": {
+          ct: {fa: "General", t: "g"},
+          m:"value1",
+          v:"value1"
+      }
+  }, {
+      "r": 0,
+      "c": 1,
+      "v": {
+          ct: {fa: "General", t: "g"},
+          m:"value2",
+          v:"value2"
+      }
+  }]
+  `
   > 详细了解 [单元格格式](./cell.md)
 
 ---
@@ -603,6 +603,7 @@
 - 默认值：{}
 - 作用： 筛选范围。一个选区，一个 sheet 只有一个筛选范围，类似`luckysheet_select_save`。如果仅仅只是创建一个选区打开筛选功能，则配置这个范围即可，如果还需要进一步设置详细的筛选条件，则需要另外配置同级的 [filter](#filter) 属性。
 - 示例：
+
   ```js
   {
 

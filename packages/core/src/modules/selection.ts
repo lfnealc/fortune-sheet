@@ -39,9 +39,13 @@ export function scrollToHighlightCell(ctx: Context, r: number, c: number) {
   if (!sheet) return;
 
   const { dataVerification } = sheet;
-  const item = dataVerification[`${r}_${c}`];
-  if (item.type === "treeselect") {
-    ctx.showTreeSelect = true;
+  const item = dataVerification?.[`${r}_${c}`] || dataVerification?.[`*_${c}`];
+  ctx.showTreeSelect = undefined;
+  if (item?.type === "treeselect") {
+    const allowEdit = isAllowEdit(ctx);
+    if (allowEdit) {
+      ctx.showTreeSelect = `${r}_${c}`;
+    }
   }
 
   const frozen = sheet?.frozen;

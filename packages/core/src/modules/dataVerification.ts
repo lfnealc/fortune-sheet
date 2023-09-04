@@ -18,6 +18,8 @@ import {
   setCellValue,
 } from "..";
 
+import { setCellValue as setCellValueApi } from "../api";
+
 // TODO: 后期增加鼠标可以选择多个选区
 // 开启范围选区
 export function dataRangeSelection(
@@ -676,6 +678,7 @@ export function cellFocus(
   c: number,
   clickMode: boolean
 ) {
+  ctx.showTreeSelect = undefined;
   const allowEdit = isAllowEdit(ctx);
   if (!allowEdit) return;
   const showHintBox = document.getElementById(
@@ -685,14 +688,13 @@ export function cellFocus(
     "luckysheet-dataVerification-dropdown-btn"
   );
   ctx.dataVerificationDropDownList = false;
-  ctx.showTreeSelect = false;
+  ctx.showTreeSelect = undefined;
   if (!showHintBox || !dropDownBtn) return;
   showHintBox.style.display = "none";
   dropDownBtn.style.display = "none";
   const index = getSheetIndex(ctx, ctx.currentSheetId) as number;
   const { dataVerification } = ctx.luckysheetfile[index];
   ctx.dataVerificationDropDownList = false;
-  ctx.showTreeSelect = false;
   if (!dataVerification) return;
   let row = ctx.visibledatarow[r];
   let row_pre = r === 0 ? 0 : ctx.visibledatarow[r - 1];
@@ -705,7 +707,7 @@ export function cellFocus(
     [row_pre, row] = margeSet.row;
     [col_pre, col] = margeSet.column;
   }
-  const item = dataVerification[`${r}_${c}`];
+  const item = dataVerification?.[`${r}_${c}`] || dataVerification?.[`*_${c}`];
   if (!item) return;
 
   // 单元格数据验证 类型是 复选
@@ -721,9 +723,9 @@ export function cellFocus(
     dropDownBtn.style.left = `${col - 20}px`;
     dropDownBtn.style.top = `${row_pre + (row - row_pre - 20) / 2 - 2}px`;
   }
-  ctx.showTreeSelect = false;
+  ctx.showTreeSelect = undefined;
   if (item.type === "treeselect") {
-    ctx.showTreeSelect = true;
+    ctx.showTreeSelect = `${r}_${c}`;
     item.hintShow = false;
   }
 
@@ -798,7 +800,7 @@ export function setDropcownValue(ctx: Context, value: string, arr: any) {
 }
 
 // 设置下拉列表的值
-export function setTreeSelectValue(ctx: Context, value: string) {
+export function setTreeSelectValue(ctx: Context, treeValue: any) {
   if (!ctx.luckysheet_select_save) return;
   const d = getFlowdata(ctx);
   if (!d) return;
@@ -807,9 +809,10 @@ export function setTreeSelectValue(ctx: Context, value: string) {
   const rowIndex = last.row_focus;
   const colIndex = last.column_focus;
   if (rowIndex == null || colIndex == null) return;
-  ctx.showTreeSelect = false;
-  // ctx.allowEdit = false;
-  setCellValue(ctx, rowIndex, colIndex, d, value);
+  ctx.showTreeSelect = undefined;
+  const allowEdit = isAllowEdit(ctx);
+  if (!allowEdit) return;
+  setCellValueApi(ctx, rowIndex, colIndex, treeValue, null, {});
 }
 
 // 输入数据验证

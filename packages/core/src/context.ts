@@ -51,7 +51,9 @@ export type Context = {
   };
   // 数据验证下拉列表
   dataVerificationDropDownList?: boolean;
-  showTreeSelect?: boolean;
+  showTreeSelect?: string;
+  treeData: any;
+  searchValue: any;
   conditionRules: ConditionRulesProps; // 条件格式
 
   contextMenu: {
@@ -229,6 +231,9 @@ export function defaultContext(globalCache: GlobalCache): Context {
       type: "",
       singleSelect: false,
     },
+
+    treeData: [],
+    searchValue: "",
 
     dataVerification: {
       selectStatus: false,

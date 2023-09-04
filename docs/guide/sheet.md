@@ -164,24 +164,24 @@ example of `data`:
 
 - example：
   `js
-    [{
-        "r": 0,
-        "c": 0,
-        "v": {
-            ct: {fa: "General", t: "g"},
-            m:"value1",
-            v:"value1"
-        }
-    }, {
-        "r": 0,
-        "c": 1,
-        "v": {
-            ct: {fa: "General", t: "g"},
-            m:"value2",
-            v:"value2"
-        }
-    }]
-    `
+  [{
+      "r": 0,
+      "c": 0,
+      "v": {
+          ct: {fa: "General", t: "g"},
+          m:"value1",
+          v:"value1"
+      }
+  }, {
+      "r": 0,
+      "c": 1,
+      "v": {
+          ct: {fa: "General", t: "g"},
+          m:"value2",
+          v:"value2"
+      }
+  }]
+  `
   > more detail [cell format](./cell.md)
 
 ---
@@ -601,6 +601,7 @@ example of `data`:
 - default：{}
 - usage：Filter range. A selection and a sheet have only one filter range, similar to `luckysheet_select_save`. If you just create a selection to turn on the filter function, you can configure this range. If you need to set further detailed filter conditions, you need to configure the [filter](#filter) property of the same level.
 - example：
+
   ```js
   {
 

@@ -13,6 +13,7 @@ import {
   getcellrange,
   iscelldata,
 } from "./formula";
+import { setCellValue as setCellValueApi } from "../api";
 import {
   attrToCssName,
   convertSpanToShareString,
@@ -662,20 +663,27 @@ export function cancelNormalSelected(ctx: Context) {
   ctx.formulaCache.rangedrag_row_start = false;
 }
 
-function getTreeValue(ctx: Context, value?: any) {
-  let returnValue;
-  if (!ctx.luckysheet_select_save) return returnValue;
+function getDataVerification(ctx: Context) {
+  let data;
+  if (!ctx.luckysheet_select_save) return data;
   const last =
     ctx.luckysheet_select_save[ctx.luckysheet_select_save.length - 1];
   const rowIndex = last.row_focus;
   const colIndex = last.column_focus;
-  if (rowIndex == null || colIndex == null) return returnValue;
+  if (rowIndex == null || colIndex == null) return data;
   const d = getFlowdata(ctx);
-  if (!d) return returnValue;
+  if (!d) return data;
   const index = getSheetIndex(ctx, ctx.currentSheetId) as number;
   const { dataVerification } = ctx.luckysheetfile[index];
-  const data = dataVerification[`${rowIndex}_${colIndex}`];
-  const list = data.value1;
+  data =
+    dataVerification?.[`${rowIndex}_${colIndex}`] ||
+    dataVerification?.[`*_${colIndex}`];
+  return data;
+}
+
+function getTreeValue(ctx: any, dataVerification: any, value?: any) {
+  let returnValue;
+  const { list } = ctx.treeData[dataVerification.treeDataName];
   if (list && list.length > 0 && value) {
     let item = list.find(
       (it: any) => it.code.toUpperCase() === value.toUpperCase()
@@ -692,8 +700,13 @@ function getTreeValue(ctx: Context, value?: any) {
       }
     }
   }
-  ctx.showTreeSelect = false;
-  return returnValue;
+  return {
+    ...returnValue,
+    ct: {
+      fa: "@",
+      t: "s",
+    },
+  };
 }
 
 // formula.updatecell
@@ -701,7 +714,7 @@ export function updateCell(
   ctx: Context,
   r: number,
   c: number,
-  $input?: HTMLDivElement | null,
+  $input: HTMLDivElement | null,
   value?: any,
   canvas?: CanvasRenderingContext2D
 ) {
@@ -741,6 +754,14 @@ export function updateCell(
 
   // ctx.old value for hook function
   const oldValue = _.cloneDeep(curv);
+
+  // API, we get value from user
+  value = value || $input?.innerText;
+  let treeValue;
+  const dataverification = getDataVerification(ctx);
+  if (dataverification?.type === "treeselect") {
+    treeValue = getTreeValue(ctx, dataverification, value);
+  }
 
   const isPrevInline = isInlineStringCell(curv);
   let isCurInline =
@@ -793,12 +814,6 @@ export function updateCell(
         },
       ];
     }
-  }
-
-  // API, we get value from user
-  value = value || $input?.innerText;
-  if (ctx.showTreeSelect) {
-    value = getTreeValue(ctx, value);
   }
 
   // Hook function
@@ -1005,7 +1020,13 @@ export function updateCell(
   }
 
   // value maybe an object
-  setCellValue(ctx, r, c, d, value);
+  if (dataverification?.type === "treeselect") {
+    ctx.showTreeSelect = undefined;
+    setCellValueApi(ctx, r, c, treeValue, $input, {});
+  } else {
+    setCellValue(ctx, r, c, d, value);
+  }
+  ctx.searchValue = "";
   cancelNormalSelected(ctx);
 
   /*

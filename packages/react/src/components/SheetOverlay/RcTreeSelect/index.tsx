@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Tree } from "antd";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { Tree, TreeSelectProps } from "antd";
 import "./index.less";
 import WorkbookContext from "packages/react/src/context";
 import {
+  getCellValue,
   getFlowdata,
+  getRealCellValue,
   getSheetIndex,
   mergeBorder,
   setTreeSelectValue,
@@ -11,11 +13,10 @@ import {
 
 const RcTreeSelect = () => {
   const { context, setContext } = useContext(WorkbookContext);
-  const [list, setList] = useState<any>([]);
   const [treeList, setTreeList] = useState<any>([]);
-  const [searchValue, setSearchValue] = useState("");
   const [position, setPosition] = useState<{ left: number; top: number }>();
-  const [valueState, setValue] = useState();
+
+  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
 
   useEffect(() => {
     if (!context.luckysheet_select_save) return;
@@ -35,55 +36,105 @@ const RcTreeSelect = () => {
     }
     const index = getSheetIndex(context, context.currentSheetId) as number;
     const { dataVerification } = context.luckysheetfile[index];
-    const item = dataVerification[`${rowIndex}_${colIndex}`];
-    // const dropdownList = getDropdownList(context, item.value1);
-    // 初始化多选的下拉列表
-    // const cellValue = getCellValue(rowIndex, colIndex, d);
-
-    // if (cellValue) {
-    //   setSelected(cellValue.toString().split(","));
-    // }
-    setTreeList(item.value2);
+    const item =
+      dataVerification?.[`${rowIndex}_${colIndex}`] ||
+      dataVerification?.[`*_${colIndex}`];
+    const { treeList: originTreeList, list: originList } =
+      context.treeData[item.treeDataName];
+    if (originTreeList && originTreeList.length !== 0) {
+      setTreeList(originTreeList);
+    } else {
+      setTreeList(originList);
+    }
     setPosition({
       left: col_pre,
       top: row,
     });
-    // setIsMul(item.type2 === "true");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [context.showTreeSelect]);
 
-  const onSearch = (value: any) => {
-    setSearchValue(value);
-  };
-
-  const handleChange = (value: any) => {
-    setValue(value);
+  const onSelect = (_: any, { node }: any) => {
     setContext((ctx) => {
-      setTreeSelectValue(ctx, value);
+      setTreeSelectValue(ctx, {
+        v: node.code,
+        m: node.name,
+        ct: {
+          fa: "@",
+          t: "s",
+        },
+      });
     });
   };
 
-  const onBlur = () => {
-    if (list && list.length > 0 && searchValue) {
-      let item = list.find(
-        (it: any) => it.code.toUpperCase() === searchValue.toUpperCase()
-      );
-      if (item) {
-        handleChange(item.code);
-      } else {
-        item = list.find((it: any) => {
-          const { name } = it;
-          return name.toUpperCase().indexOf(searchValue.toUpperCase()) !== -1;
-        });
-        if (item) {
-          handleChange(item.code);
-        } else {
-          handleChange(undefined);
-        }
-      }
-      setSearchValue("");
-    }
+  const onExpand = (newExpandedKeys: React.Key[]) => {
+    setExpandedKeys(newExpandedKeys);
   };
+
+  const fillLegacyProps = (dataNode: any): any => {
+    if (!dataNode) {
+      return dataNode;
+    }
+
+    const cloneNode = { ...dataNode };
+
+    if (!("props" in cloneNode)) {
+      Object.defineProperty(cloneNode, "props", {
+        get() {
+          return cloneNode;
+        },
+      });
+    }
+    return cloneNode;
+  };
+
+  const filter = React.useMemo(() => {
+    if (!context.searchValue) {
+      return treeList;
+    }
+
+    const upperStr = context.searchValue.toUpperCase();
+    const filterOptionFunc = (_: any, dataNode: { [x: string]: any }) => {
+      const { code, name } = dataNode;
+
+      return (
+        String(code).toUpperCase().includes(upperStr) ||
+        String(name).toUpperCase().includes(upperStr)
+      );
+    };
+    const newExpandedKeys: React.Key[] = [];
+    function dig(filterList: any[], keepAll: boolean = false) {
+      return filterList.reduce((total, dataNode) => {
+        const { children } = dataNode;
+
+        const match =
+          keepAll ||
+          filterOptionFunc(context.searchValue, fillLegacyProps(dataNode));
+        const childList = dig(children || [], match);
+
+        if (match || childList.length) {
+          let name;
+          if (match) {
+            newExpandedKeys.push(dataNode.code);
+            name = (
+              <span className="site-tree-search-value">{dataNode.name}</span>
+            );
+          } else {
+            name = dataNode.name;
+          }
+          total.push({
+            ...dataNode,
+            name,
+            isLeaf: undefined,
+            children: childList,
+          });
+        }
+        return total;
+      }, []);
+    }
+    const filterTreeList = dig(treeList);
+    setExpandedKeys(newExpandedKeys);
+    return filterTreeList;
+  }, [treeList, context.searchValue]);
 
   return (
     <div
@@ -95,7 +146,16 @@ const RcTreeSelect = () => {
       onMouseUp={(e) => e.stopPropagation()}
       style={{ ...position }}
     >
-      <Tree treeData={treeList} selectable={false} />
+      <Tree
+        onExpand={onExpand}
+        expandedKeys={expandedKeys}
+        autoExpandParent
+        treeData={filter}
+        fieldNames={{ title: "name", key: "code", children: "children" }}
+        // selectable={false}
+        onSelect={onSelect}
+        blockNode
+      />
     </div>
   );
 };

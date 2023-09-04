@@ -60,7 +60,7 @@ type AdditionalProps = {
 };
 
 const Workbook = React.forwardRef<WorkbookInstance, Settings & AdditionalProps>(
-  ({ onChange, onOp, data: originalData, ...props }, ref) => {
+  ({ onChange, onOp, data: originalData, treeData, ...props }, ref) => {
     const globalCache = useRef<GlobalCache>({ undoList: [], redoList: [] });
     const [context, setContext] = useState(defaultContext(globalCache.current));
     const { formula } = locale(context);
@@ -418,6 +418,7 @@ const Workbook = React.forwardRef<WorkbookInstance, Settings & AdditionalProps>(
           draftCtx.lang = mergedSettings.lang;
           draftCtx.allowEdit = mergedSettings.allowEdit;
           draftCtx.hooks = mergedSettings.hooks;
+          draftCtx.treeData = treeData;
           // draftCtx.fontList = mergedSettings.fontList;
           if (_.isEmpty(draftCtx.currentSheetId)) {
             initSheetIndex(draftCtx);

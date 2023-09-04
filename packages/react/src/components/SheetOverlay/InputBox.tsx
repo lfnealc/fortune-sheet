@@ -215,7 +215,7 @@ const InputBox: React.FC = () => {
           // }
         } else {
           setContext((draftCtx) => {
-            draftCtx.showTreeSelect = false;
+            draftCtx.showTreeSelect = undefined;
           });
         }
       } else if (e.key === "F4" && context.luckysheetCellUpdate.length > 0) {
