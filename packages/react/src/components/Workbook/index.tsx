@@ -524,6 +524,7 @@ const Workbook = React.forwardRef<WorkbookInstance, Settings & AdditionalProps>(
       context.currentSheetId,
       context.luckysheetfile.length,
       originalData,
+      treeData,
       mergedSettings.defaultRowHeight,
       mergedSettings.defaultColWidth,
       mergedSettings.column,

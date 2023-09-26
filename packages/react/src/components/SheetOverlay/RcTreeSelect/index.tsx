@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Tree, TreeSelectProps } from "antd";
+import { Tree } from "antd";
 import "./index.less";
-import WorkbookContext from "packages/react/src/context";
 import {
-  getCellValue,
   getFlowdata,
-  getRealCellValue,
   getSheetIndex,
   mergeBorder,
   setTreeSelectValue,
 } from "@fortune-sheet/core";
+import WorkbookContext from "../../../context";
 
 const RcTreeSelect = () => {
   const { context, setContext } = useContext(WorkbookContext);

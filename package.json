@@ -5,7 +5,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "repository": "https://github.com/ruilisi/fortune-sheet",
+  "repository": "https://github.com/lfnealc/fortune-sheet",
   "license": "MIT",
   "scripts": {
     "dev": "npx yarn storybook",
@@ -15,7 +15,7 @@
     "tsc": "tsc --noEmit",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx,.json ./packages",
     "postinstall": "lerna run build --scope=@fortune-sheet/formula-parser",
-    "publish": "npm publish packages/core --registry 'https://registry.npmjs.org' && npm publish packages/react --registry 'https://registry.npmjs.org'",
+    "publish": "npm publish packages/core --registry 'https://packages.aliyun.com/5f81db1a30352652858484de/npm/npm-registry/' && npm publish packages/react --registry 'https://packages.aliyun.com/5f81db1a30352652858484de/npm/npm-registry/'",
     "test": "jest",
     "coverage": "jest --coverage",
     "eject": "react-scripts eject"
@@ -69,13 +69,12 @@
   "dependencies": {
     "less": "^3.13.1",
     "less-loader": "^11.1.3",
-    "rc-tree-select": "~5.11.0",
     "react": ">= 18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.4",
-    "antd": "^4.23.2",
-    "moment": "^2.29.0"
+    "react-is":"18.2.0",
+    "@types/react-is":"18.2.1",
+    "typescript": "^5.2.2"
   },
   "gitHooks": {
     "pre-commit": "npx yarn lint"

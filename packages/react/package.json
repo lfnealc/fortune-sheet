@@ -15,7 +15,9 @@
   "dependencies": {
     "@fortune-sheet/core": "^0.19.0",
     "immer": "^9.0.12",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "antd": "^4.23.2",
+    "react-is": "^18.2.0"
   },
   "peerDependencies": {
     "react": ">= 18.2",
