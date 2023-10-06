@@ -16,7 +16,7 @@ import {
   israngeseleciton,
   escapeHTMLTag,
   isAllowEdit,
-} from "@fortune-sheet/core";
+} from "@fortune-sheet-custom/core";
 import React, {
   useContext,
   useEffect,

@@ -4,7 +4,7 @@ import {
   MAX_ZOOM_RATIO,
   MIN_ZOOM_RATIO,
   getSheetIndex,
-} from "@fortune-sheet/core";
+} from "@fortune-sheet-custom/core";
 import WorkbookContext from "../../context";
 import SVGIcon from "../SVGIcon";
 import { useOutsideClick } from "../../hooks/useOutsideClick";

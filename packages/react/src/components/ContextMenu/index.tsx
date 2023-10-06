@@ -16,7 +16,7 @@ import {
   api,
   isAllowEdit,
   jfrefreshgrid,
-} from "@fortune-sheet/core";
+} from "@fortune-sheet-custom/core";
 import _ from "lodash";
 import React, { useContext, useRef, useCallback, useLayoutEffect } from "react";
 import WorkbookContext, { SetContextOptions } from "../../context";

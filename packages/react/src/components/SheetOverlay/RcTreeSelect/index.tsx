@@ -6,7 +6,7 @@ import {
   getSheetIndex,
   mergeBorder,
   setTreeSelectValue,
-} from "@fortune-sheet/core";
+} from "@fortune-sheet-custom/core";
 import WorkbookContext from "../../../context";
 
 const RcTreeSelect = () => {

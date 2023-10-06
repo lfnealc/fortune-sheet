@@ -42,7 +42,7 @@
 - 完全使用 typescript 编写。
 - 可以用 `import` / `require` 导入本库了。
   ```js
-  import { Workbook } from "@fortune-sheet/react";
+  import { Workbook } from "@fortune-sheet-custom/react";
   ```
 - 同页面支持多个实例。
 - 去掉了 `jQuery` 的依赖, 用原生 `React` / `Vue` + `immer` 来管理 Dom 和状态。
@@ -105,7 +105,7 @@
 <summary>使用 npm</summary>
 
 ```shell
-npm install @fortune-sheet/react
+npm install @fortune-sheet-custom/react
 ```
 
 </details>
@@ -114,7 +114,7 @@ npm install @fortune-sheet/react
 <summary>使用 pnpm</summary>
 
 ```shell
-pnpm install @fortune-sheet/react
+pnpm install @fortune-sheet-custom/react
 ```
 
 </details>
@@ -123,7 +123,7 @@ pnpm install @fortune-sheet/react
 <summary>使用 yarn</summary>
 
 ```shell
-yarn add @fortune-sheet/react
+yarn add @fortune-sheet-custom/react
 ```
 
 </details>
@@ -149,8 +149,8 @@ yarn add @fortune-sheet/react
 ```js
 import React from "react";
 import ReactDOM from "react-dom";
-import { Workbook } from "@fortune-sheet/react";
-import "@fortune-sheet/react/dist/index.css";
+import { Workbook } from "@fortune-sheet-custom/react";
+import "@fortune-sheet-custom/react/dist/index.css";
 
 ReactDOM.render(
   <Workbook data={[{ name: "Sheet1" }]} />,

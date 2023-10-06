@@ -4,7 +4,7 @@ import {
   getSheetIndex,
   locale,
   update,
-} from "@fortune-sheet/core";
+} from "@fortune-sheet-custom/core";
 import _ from "lodash";
 import WorkbookContext from "../../context";
 import "./index.css";

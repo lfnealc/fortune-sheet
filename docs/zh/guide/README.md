@@ -101,13 +101,13 @@ FortuneSheet 是一款开箱即用的类似 Excel 和 Google Sheets 的 javascri
 ### 安装库
 
 ```shell
-yarn add @fortune-sheet/react
+yarn add @fortune-sheet-custom/react
 ```
 
 或使用 npm:
 
 ```shell
-npm install @fortune-sheet/react
+npm install @fortune-sheet-custom/react
 ```
 
 ### 创建一个 HTML 容器
@@ -131,8 +131,8 @@ npm install @fortune-sheet/react
 ```js
 import React from "react";
 import ReactDOM from "react-dom";
-import { Workbook } from "@fortune-sheet/react";
-import "@fortune-sheet/react/dist/index.css";
+import { Workbook } from "@fortune-sheet-custom/react";
+import "@fortune-sheet-custom/react/dist/index.css";
 
 ReactDOM.render(
   <Workbook data={[{ name: "Sheet1" }]} />,

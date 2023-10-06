@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { Sheet } from "@fortune-sheet/core";
-import { Workbook, WorkbookInstance } from "@fortune-sheet/react";
+import { Sheet } from "@fortune-sheet-custom/core";
+import { Workbook, WorkbookInstance } from "@fortune-sheet-custom/react";
 import moment from "moment";
 import { Button } from "antd";
 import cell from "./data/cell";

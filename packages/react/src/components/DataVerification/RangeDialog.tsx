@@ -1,4 +1,4 @@
-import { getRangetxt, locale } from "@fortune-sheet/core";
+import { getRangetxt, locale } from "@fortune-sheet-custom/core";
 
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import DataVerification from ".";
